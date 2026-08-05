@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="dashboard_style.css" />
+</head>
+<body>
+
+    <a href="LandingPage2.html" class="back-arrow" title="back-arrow"><i class="glyphicon glyphicon-arrow-left"></i></a>
+
+    <input type="checkbox" id="sidebar-toggle" class="sidebar-checkbox" title="Toggle sidebar navigation">
+
+    <nav>
+        <label for="sidebar-toggle" class="hamburger"><span class="glyphicon glyphicon-menu-hamburger"></span></label>
+        <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
+        <ul>
+            <li><a href="JobsListingPage.html" class="nav-link">Browse Jobs</a></li>
+            <li><a href="ProfilePage.html" class="nav-link">Profile</a></li>
+            <li><a href="MyApplicationsPage.html" class="nav-link">My Applications</a></li>
+            <li><a href="LandingPage2.html" class="nav-btn">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-avatar">D</div>
+            <h3>David</h3>
+            <p>david@email.com</p>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="DashboardPage.html" class="active"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+            <li><a href="ProfilePage.html"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+            <li><a href="MyApplicationsPage.html"><span class="glyphicon glyphicon-list-alt"></span> My Applications</a></li>
+            <li><a href="JobsListingPage.html"><span class="glyphicon glyphicon-search"></span> Browse Jobs</a></li>
+            <li><a href="LandingPage2.html"><span class="glyphicon glyphicon-log-out"></span> Sign Out</a></li>
+        </ul>
+    </div>
+
+    <div class="sidebar-overlay"></div>
+
+    <section id="dashboard">
+        <div class="dash-header">
+            <h2>Welcome back, David! <span class="wave">👋</span></h2>
+            <p>Here&rsquo;s what&rsquo;s happening with your job search today.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon applied"><span class="glyphicon glyphicon-send"></span></div>
+                <div class="stat-info">
+                    <span class="stat-num" data-target="8">0</span>
+                    <span class="stat-label">Applied Jobs</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon saved"><span class="glyphicon glyphicon-bookmark"></span></div>
+                <div class="stat-info">
+                    <span class="stat-num" data-target="15">0</span>
+                    <span class="stat-label">Saved Jobs</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon interviews"><span class="glyphicon glyphicon-calendar"></span></div>
+                <div class="stat-info">
+                    <span class="stat-num" data-target="2">0</span>
+                    <span class="stat-label">Interviews</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon profile"><span class="glyphicon glyphicon-user"></span></div>
+                <div class="stat-info">
+                    <span class="stat-num" data-target="75">0</span>
+                    <span class="stat-label">Profile Completion</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-grid">
+            <div class="dash-card recent">
+                <h3><span class="glyphicon glyphicon-time"></span> Recent Applications</h3>
+                <div class="app-item">
+                    <div class="app-info">
+                        <strong>Frontend Developer</strong>
+                        <span>Facebook &bull; Remote</span>
+                    </div>
+                    <span class="app-status pending">Pending</span>
+                </div>
+                <div class="app-item">
+                    <div class="app-info">
+                        <strong>Backend Engineer</strong>
+                        <span>Google &bull; Mountain View</span>
+                    </div>
+                    <span class="app-status interview">Interview</span>
+                </div>
+                <div class="app-item">
+                    <div class="app-info">
+                        <strong>UI/UX Designer</strong>
+                        <span>Apple &bull; Cupertino</span>
+                    </div>
+                    <span class="app-status rejected">Rejected</span>
+                </div>
+                <div class="app-item">
+                    <div class="app-info">
+                        <strong>Full Stack Developer</strong>
+                        <span>Amazon &bull; Seattle</span>
+                    </div>
+                    <span class="app-status pending">Pending</span>
+                </div>
+            </div>
+
+            <div class="dash-card profile-completion">
+                <h3><span class="glyphicon glyphicon-tasks"></span> Profile Completion</h3>
+                <div class="progress-circle" data-progress="75">
+                    <div class="progress-inner">
+                        <span class="progress-num">75%</span>
+                    </div>
+                </div>
+                <ul class="profile-checklist">
+                    <li class="done"><span class="glyphicon glyphicon-ok"></span> Personal Info</li>
+                    <li class="done"><span class="glyphicon glyphicon-ok"></span> Email Verified</li>
+                    <li class="done"><span class="glyphicon glyphicon-ok"></span> Skills Added</li>
+                    <li><span class="glyphicon glyphicon-remove"></span> Experience</li>
+                    <li><span class="glyphicon glyphicon-remove"></span> Resume Uploaded</li>
+                </ul>
+            </div>
+
+            <div class="dash-card notifications">
+                <h3><span class="glyphicon glyphicon-bell"></span> Notifications</h3>
+                <div class="notif-item unread">
+                    <span class="notif-dot"></span>
+                    <div class="notif-info">
+                        <strong>New job match!</strong>
+                        <span>Senior Frontend at Netflix matches your profile.</span>
+                        <small>2 hours ago</small>
+                    </div>
+                </div>
+                <div class="notif-item unread">
+                    <span class="notif-dot"></span>
+                    <div class="notif-info">
+                        <strong>Application viewed</strong>
+                        <span>Facebook viewed your application for Frontend Developer.</span>
+                        <small>1 day ago</small>
+                    </div>
+                </div>
+                <div class="notif-item">
+                    <span class="notif-dot read"></span>
+                    <div class="notif-info">
+                        <strong>Interview scheduled</strong>
+                        <span>Google interview for Backend Engineer on Friday.</span>
+                        <small>3 days ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footgrid">
+            <div class="col">
+                <h4><span class="glyphicon glyphicon-briefcase"></span> JobPortal</h4>
+                <p style="font-size: 0.9rem; opacity: 0.75;">Connecting talent with opportunity since 2024.</p>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="LandingPage2.html">Home</a></li>
+                    <li><a href="JobsListingPage.html">Browse Jobs</a></li>
+                    <li><a href="DashboardPage.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="ProfilePage.html">Profile</a></li>
+                    <li><a href="MyApplicationsPage.html">My Applications</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">&copy; 2026 JobPortal. All rights reserved.</div>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

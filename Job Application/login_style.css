@@ -1,0 +1,484 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.back-arrow {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #fff;
+    background-color: #4f4dc3;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.back-arrow:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    background-color: #3a39a0;
+    text-decoration: none;
+    color: #fff;
+}
+
+.back-arrow:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #4f4dc3, #9cbce8, #6c63ff, #a8d0e6);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    min-height: 100vh;
+}
+
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding: 1rem;
+    animation: fadeSlideUp 0.8s ease-out;
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+}
+
+h4 {
+    text-align: center;
+    margin-bottom: 16px;
+    color: #000000;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#image {
+    width: 50%;
+    max-width: 475px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#frm {
+    width: 50%;
+    max-width: 475px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 475px;
+    height: 450px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: float 4s ease-in-out infinite;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border: 1px solid #000;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    width: 475px;
+    min-height: 450px;
+    height: auto;
+    padding: 32px;
+    overflow-y: auto;
+}
+
+form:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    font-size: 19px;
+    margin-bottom: 0.5rem;
+    color: #000000;
+}
+
+input {
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 250px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(79, 77, 195, 0.3);
+    border-color: #4f4dc3;
+}
+
+#email {
+    background-color: #fff;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 5px;
+}
+
+#password {
+    background-color: #fff;
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 5px;
+}
+
+fieldset {
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    padding: 0;
+    width: 100%;
+    max-width: 280px;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+fieldset:focus-within {
+    border-color: #4f4dc3;
+    box-shadow: 0 0 0 2px rgba(79, 77, 195, 0.15);
+}
+
+legend {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    color: #333;
+    padding: 0 0.25rem;
+}
+
+#login-button {
+    padding: 0.6rem 2rem;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #4f4dc3;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 16px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    animation: fadeSlideUp 0.5s ease-out 0.6s both;
+}
+
+#login-button:hover {
+    background-color: #4f4dc3;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(79, 77, 195, 0.4);
+}
+
+#login-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(79, 77, 195, 0.3);
+}
+
+
+p {
+    margin-top: 0.5rem;
+}
+
+a {
+    color: #4f4dc3;
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+a:hover {
+    color: #3a39a0;
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: 2px solid #4f4dc3;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+
+fieldset:nth-child(1) {
+    animation: fadeSlideUp 0.5s ease-out 0.2s both;
+}
+fieldset:nth-child(2) {
+    animation: fadeSlideUp 0.5s ease-out 0.4s both;
+}
+
+
+@media (max-width: 768px) {
+    #image {
+        width: 100%;
+        max-width: 475px;
+    }
+    #frm {
+        width: 100%;
+        max-width: 475px;
+    }
+    img {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+    form {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        padding: 1.5rem 1rem;
+    }
+}
+
+
+/* ============================================================
+   ERROR MESSAGE STYLES
+   These styles are for validation error messages that appear
+   below input fields when the user enters invalid data.
+   ============================================================ */
+
+/* Error message text - hidden by default */
+.error-message {
+    color: #dc3545; /* Red color for errors */
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 0;
+    display: none; /* Hidden by default */
+    text-align: left;
+    font-weight: 500;
+}
+
+/* When the error message is visible (class added by JavaScript) */
+.error-message:not(.hidden) {
+    display: block;
+}
+
+/* General error message (for invalid credentials) */
+.general-error {
+    text-align: center;
+    font-size: 14px;
+    margin: 8px 0;
+    padding: 8px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 280px;
+}
+
+/* Success message styling */
+.success-message {
+    color: #155724;
+    font-size: 14px;
+    margin: 8px 0;
+    padding: 8px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+    width: 100%;
+    max-width: 280px;
+}
+
+.success-message:not(.hidden) {
+    display: block;
+}
+
+/* Input field with error - red border */
+.input-error {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25) !important;
+}
+
+/* ============================================================
+   PASSWORD FIELD WITH TOGGLE BUTTON
+   The password input and the eye icon button are wrapped in
+   a flex container so they appear side by side.
+   ============================================================ */
+
+/* Wrapper that contains the password input and toggle button */
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+/* The password input inside the wrapper */
+.password-wrapper input {
+    flex: 1;
+    padding-right: 40px; /* Space for the toggle button */
+}
+
+/* The show/hide password toggle button */
+.toggle-password {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #666;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #4f4dc3;
+}
+
+/* ============================================================
+   REMEMBER ME CHECKBOX
+   A simple checkbox with label for the "Remember Me" option.
+   ============================================================ */
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+    width: 100%;
+    max-width: 280px;
+}
+
+.remember-me input[type="checkbox"] {
+    width: auto;
+    cursor: pointer;
+}
+
+.remember-me label {
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+/* ============================================================
+   LOGIN BUTTON WITH LOADING SPINNER
+   The button changes appearance when in loading state.
+   ============================================================ */
+
+/* The login button - updated to match the new structure */
+.login-button {
+    padding: 0.6rem 2rem;
+    background-color: #fff;
+    color: #000;
+    border: 2px solid #4f4dc3;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 16px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    animation: fadeSlideUp 0.5s ease-out 0.6s both;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 150px;
+}
+
+.login-button:hover:not(:disabled) {
+    background-color: #4f4dc3;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(79, 77, 195, 0.4);
+}
+
+.login-button:active:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(79, 77, 195, 0.3);
+}
+
+/* Disabled state - when loading */
+.login-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Loading spinner */
+.spinner {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Hidden class - used by JavaScript to show/hide elements */
+.hidden {
+    display: none !important;
+}
+
+/* Spinning animation for the loading icon */
+.spinning {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================================
+   RESPONSIVE STYLES
+   ============================================================ */
+
+@media (max-width: 480px) {
+    #container {
+        padding: 0.5rem;
+        gap: 0.75rem;
+    }
+    img {
+        max-width: 300px;
+    }
+    form {
+        max-width: 100%;
+    }
+    input {
+        max-width: none;
+    }
+    fieldset {
+        max-width: none;
+    }
+    label {
+        font-size: 1rem;
+    }
+    h4 {
+        font-size: 1.25rem;
+    }
+}

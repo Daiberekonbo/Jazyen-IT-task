@@ -1,0 +1,573 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+.back-arrow {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #fff;
+    background-color: #4f4dc3;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.back-arrow:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    background-color: #3a39a0;
+    text-decoration: none;
+    color: #fff;
+}
+
+.back-arrow:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #4f4dc3 0%, #9cbce8 50%, #b8d4f0 100%);
+    min-height: 100vh;
+    color: #fff;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    padding: 2% 5%;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+nav .logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    gap: 8px;
+}
+
+nav ul .nav-link {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 14px;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+}
+
+nav ul .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+nav .nav-btn {
+    padding: 5px 15px;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+nav .nav-btn:hover {
+    background: #fff;
+    color: #4f4dc3;
+}
+
+#listings {
+    padding: 100px 5% 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.list-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.list-header h2 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.list-header p {
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
+    padding: 4px;
+    max-width: 700px;
+    margin: 0 auto 25px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus-within {
+    border-color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.search-icon {
+    padding: 0 16px;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.search-bar input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 14px 5px;
+    font-size: 14px;
+    color: #fff;
+    font-family: inherit;
+}
+
+.search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-btn {
+    padding: 10px 28px;
+    background: #fff;
+    color: #4f4dc3;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 160px;
+}
+
+.filter-group label {
+    font-size: 10px;
+    font-weight: 600;
+    opacity: 0.85;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-group select {
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 12px;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+.filter-group select option {
+    background: #4f4dc3;
+    color: #fff;
+}
+
+.filter-group select:focus {
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.results-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 5px;
+}
+
+.results-info span {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+.view-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+.view-toggle span {
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.view-toggle .active-view {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.job-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 22px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.job-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.job-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.job-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.job-info {
+    flex: 1;
+}
+
+.job-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.job-info .company {
+    font-size: 12px;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.job-badge {
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.full-time {
+    background: rgba(76, 175, 80, 0.25);
+    color: #81c784;
+}
+
+.contract {
+    background: rgba(255, 152, 0, 0.25);
+    color: #ffb74d;
+}
+
+.part-time {
+    background: rgba(33, 150, 243, 0.25);
+    color: #64b5f6;
+}
+
+.job-mid {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.job-mid span {
+    font-size: 11px;
+    opacity: 0.75;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.job-desc {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.job-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.job-tags span {
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.page-btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.page-btn.active {
+    background: #fff;
+    color: #4f4dc3;
+}
+
+.page-dots {
+    font-size: 14px;
+    opacity: 0.6;
+    padding: 0 4px;
+}
+
+footer {
+    padding: 25px 5% 15px;
+    background: rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.col ul {
+    list-style: none;
+}
+
+.col ul li {
+    margin-bottom: 5px;
+}
+
+.col ul li a {
+    opacity: 0.75;
+    transition: opacity 0.3s;
+    font-size: 9px;
+}
+
+.col ul li a:hover {
+    opacity: 1;
+}
+
+.bottom {
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 8.5px;
+    opacity: 0.6;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+    /* Hide the back-arrow on mobile so it doesn't block the nav */
+    .back-arrow {
+        display: none;
+    }
+
+    nav {
+        padding: 3% 4%;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(79, 77, 195, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-group {
+        min-width: auto;
+    }
+
+    .job-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .list-header h2 {
+        font-size: 26px;
+    }
+
+    /* Make content not hidden behind fixed nav */
+    #listings {
+        padding-top: 80px;
+    }
+}
+
+@media (max-width: 600px) {
+    .job-mid {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .results-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+        border-radius: 15px;
+        background: transparent;
+        gap: 10px;
+    }
+
+    .search-bar input {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50px;
+        padding: 14px 20px;
+        width: 100%;
+    }
+
+    .search-icon {
+        display: none;
+    }
+
+    .search-btn {
+        width: 100%;
+    }
+}

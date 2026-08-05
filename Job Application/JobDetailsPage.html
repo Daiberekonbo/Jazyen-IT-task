@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="job_details_style.css" />
+</head>
+<body>
+
+    <a href="JobsListingPage.html" class="back-arrow" title="back-"><i class="glyphicon glyphicon-arrow-left"></i></a>
+
+    <nav>
+        <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
+        <ul>
+            <li><a href="DashboardPage.html" class="nav-link">Dashboard</a></li>
+            <li><a href="ProfilePage.html" class="nav-link">Profile</a></li>
+            <li><a href="MyApplicationsPage.html" class="nav-link">My Applications</a></li>
+            <li><a href="LandingPage2.html" class="nav-btn">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <section id="job-detail">
+        <div class="detail-header">
+            <div class="detail-top">
+                <div class="detail-logo">FB</div>
+                <div class="detail-title">
+                    <h2>Frontend Developer</h2>
+                    <p class="company"><span class="glyphicon glyphicon-briefcase"></span> Facebook &bull; <span class="glyphicon glyphicon-map-marker"></span> Remote</p>
+                    <div class="detail-meta">
+                        <span class="job-badge full-time">Full Time</span>
+                        <span><span class="glyphicon glyphicon-usd"></span> $80k - $120k</span>
+                        <span><span class="glyphicon glyphicon-time"></span> Posted 2 days ago</span>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="apply-btn"><span class="glyphicon glyphicon-send"></span> Apply Now</a>
+        </div>
+
+        <div class="tabs">
+            <input type="radio" name="tab" id="tab1" checked>
+            <input type="radio" name="tab" id="tab2">
+            <input type="radio" name="tab" id="tab3">
+
+            <div class="tab-labels">
+                <label for="tab1" class="tab-label">Description</label>
+                <label for="tab2" class="tab-label">Requirements</label>
+                <label for="tab3" class="tab-label">Company</label>
+                <div class="tab-indicator"></div>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-panel" id="panel1">
+                    <h3>Job Description</h3>
+                    <p>We are looking for a talented Frontend Developer to join our team at Facebook. You will be responsible for building and maintaining modern web applications used by billions of people worldwide.</p>
+                    <p>As a Frontend Developer, you will collaborate with cross-functional teams including designers, product managers, and backend engineers to create seamless user experiences.</p>
+                    <h4>What You'll Do</h4>
+                    <ul>
+                        <li>Develop new features and improve existing ones using React, TypeScript, and CSS</li>
+                        <li>Collaborate with designers to implement pixel-perfect UI components</li>
+                        <li>Optimise application performance and accessibility</li>
+                        <li>Participate in code reviews and mentor junior developers</li>
+                        <li>Contribute to our component library and design system</li>
+                    </ul>
+                    <h4>Benefits</h4>
+                    <ul class="benefits-list">
+                        <li><span class="glyphicon glyphicon-ok"></span> Competitive salary and equity package</li>
+                        <li><span class="glyphicon glyphicon-ok"></span> Remote-friendly work environment</li>
+                        <li><span class="glyphicon glyphicon-ok"></span> Health, dental, and vision insurance</li>
+                        <li><span class="glyphicon glyphicon-ok"></span> Annual learning & development budget</li>
+                        <li><span class="glyphicon glyphicon-ok"></span> 401(k) matching programme</li>
+                        <li><span class="glyphicon glyphicon-ok"></span> Flexible paid time off</li>
+                    </ul>
+                </div>
+
+                <div class="tab-panel" id="panel2">
+                    <h3>Requirements</h3>
+                    <div class="req-section">
+                        <h4>Minimum Qualifications</h4>
+                        <ul>
+                            <li>3+ years of experience in frontend development</li>
+                            <li>Strong proficiency in React, TypeScript, and modern CSS</li>
+                            <li>Experience with responsive design and cross-browser compatibility</li>
+                            <li>Familiarity with version control systems (Git)</li>
+                            <li>Excellent problem-solving and communication skills</li>
+                        </ul>
+                    </div>
+                    <div class="req-section">
+                        <h4>Preferred Qualifications</h4>
+                        <ul>
+                            <li>Experience with Next.js or similar frameworks</li>
+                            <li>Knowledge of performance optimisation techniques</li>
+                            <li>Familiarity with Webpack, Vite, or other build tools</li>
+                            <li>Experience with testing frameworks (Jest, Cypress)</li>
+                            <li>Open-source contributions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="panel3">
+                    <h3>About Facebook</h3>
+                    <p>Facebook's mission is to give people the power to build community and bring the world closer together. Our products empower more than 3 billion people around the world to share ideas, offer support, and make a difference.</p>
+                    <div class="company-stats">
+                        <div class="cstat">
+                            <span class="cstat-num">87,000+</span>
+                            <span class="cstat-label">Employees Worldwide</span>
+                        </div>
+                        <div class="cstat">
+                            <span class="cstat-num">3.07B</span>
+                            <span class="cstat-label">Monthly Active Users</span>
+                        </div>
+                        <div class="cstat">
+                            <span class="cstat-num">200+</span>
+                            <span class="cstat-label">Offices Globally</span>
+                        </div>
+                    </div>
+                    <p>We believe that the best work happens when diverse perspectives come together in an inclusive environment. We are committed to building a workforce that reflects the communities we serve.</p>
+                    <p class="company-link"><a href="#">Visit Company Website <span class="glyphicon glyphicon-new-window"></span></a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footgrid">
+            <div class="col">
+                <h4><span class="glyphicon glyphicon-briefcase"></span> JobPortal</h4>
+                <p style="font-size: 0.9rem; opacity: 0.75;">Connecting talent with opportunity since 2024.</p>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="LandingPage2.html">Home</a></li>
+                    <li><a href="JobsListingPage.html">Browse Jobs</a></li>
+                    <li><a href="DashboardPage.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="ProfilePage.html">Profile</a></li>
+                    <li><a href="MyApplicationsPage.html">My Applications</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">&copy; 2026 JobPortal. All rights reserved.</div>
+    </footer>
+
+    <script src="job_details.js"></script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="jobslisting.css" />
+</head>
+<body>
+
+    <a href="LandingPage2.html" class="back-arrow" title="back-arrow"><i class="glyphicon glyphicon-arrow-left"></i></a>
+
+    <nav>
+        <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
+        <ul>
+            <li><a href="DashboardPage.html" class="nav-link">Dashboard</a></li>
+            <li><a href="ProfilePage.html" class="nav-link">Profile</a></li>
+            <li><a href="MyApplicationsPage.html" class="nav-link">My Applications</a></li>
+            <li><a href="LandingPage2.html" class="nav-btn">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <section id="listings">
+
+        <div class="list-header">
+            <h2>Find Your Next Role</h2>
+            <p>Browse through thousands of job opportunities tailored to your skills.</p>
+        </div>
+
+        <div class="search-bar">
+            <span class="glyphicon glyphicon-search search-icon"></span>
+            <input type="text" placeholder="Search jobs, companies, keywords..." />
+            <button class="search-btn">Search</button>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <label for="location"><span class="glyphicon glyphicon-map-marker"></span> Location</label>
+                <select id="location">
+                    <option>All Locations</option>
+                    <option>Remote</option>
+                    <option>New York</option>
+                    <option>San Francisco</option>
+                    <option>London</option>
+                    <option>Lagos</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="category"><span class="glyphicon glyphicon-list"></span> Category</label>
+                <select id="category">
+                    <option>All Categories</option>
+                    <option>Frontend</option>
+                    <option>Backend</option>
+                    <option>Full Stack</option>
+                    <option>Design</option>
+                    <option>DevOps</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="experience"><span class="glyphicon glyphicon-education"></span> Experience</label>
+                <select id="experience">
+                    <option>Any Experience</option>
+                    <option>Entry Level</option>
+                    <option>Mid Level</option>
+                    <option>Senior</option>
+                    <option>Lead</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="salary"><span class="glyphicon glyphicon-usd"></span> Salary</label>
+                <select id="salary">
+                    <option>Any Salary</option>
+                    <option>$40k - $60k</option>
+                    <option>$60k - $80k</option>
+                    <option>$80k - $100k</option>
+                    <option>$100k+</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="results-info">
+            <span>Showing <strong>12</strong> of <strong>1,245</strong> jobs</span>
+            <div class="view-toggle">
+                <span class="glyphicon glyphicon-th-list active-view"></span>
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+
+        <div class="job-grid">
+
+            <a href="JobDetailsPage.html" class="job-card">
+                <div class="job-top">
+                    <div class="job-logo">FB</div>
+                    <div class="job-info">
+                        <h3>Frontend Developer</h3>
+                        <p class="company"><span class="glyphicon glyphicon-briefcase"></span> Facebook</p>
+                    </div>
+                    <span class="job-badge full-time">Full Time</span>
+                </div>
+                <div class="job-mid">
+                    <span><span class="glyphicon glyphicon-map-marker"></span> Remote</span>
+                    <span><span class="glyphicon glyphicon-usd"></span> $80k - $120k</span>
+                    <span><span class="glyphicon glyphicon-time"></span> Posted 2d ago</span>
+                </div>
+                <p class="job-desc">Build and maintain modern web applications using React, TypeScript, and CSS. Collaborate with cross-functional teams.</p>
+                <div class="job-tags">
+                    <span>React</span>
+                    <span>TypeScript</span>
+                    <span>CSS</span>
+                </div>
+            </a>
+
+            <a href="JobDetailsPage.html" class="job-card">
+                <div class="job-top">
+                    <div class="job-logo">GG</div>
+                    <div class="job-info">
+                        <h3>Backend Engineer</h3>
+                        <p class="company"><span class="glyphicon glyphicon-briefcase"></span> Google</p>
+                    </div>
+                    <span class="job-badge full-time">Full Time</span>
+                </div>
+                <div class="job-mid">
+                    <span><span class="glyphicon glyphicon-map-marker"></span> Mountain View</span>
+                    <span><span class="glyphicon glyphicon-usd"></span> $120k - $160k</span>
+                    <span><span class="glyphicon glyphicon-time"></span> Posted 1d ago</span>
+                </div>
+                <p class="job-desc">Design and implement scalable backend services. Work with Go, Python, and distributed systems.</p>
+                <div class="job-tags">
+                    <span>Go</span>
+                    <span>Python</span>
+                    <span>Kubernetes</span>
+                </div>
+            </a>
+
+            <a href="JobDetailsPage.html" class="job-card">
+                <div class="job-top">
+                    <div class="job-logo">AP</div>
+                    <div class="job-info">
+                        <h3>UI/UX Designer</h3>
+                        <p class="company"><span class="glyphicon glyphicon-briefcase"></span> Apple</p>
+                    </div>
+                    <span class="job-badge contract">Contract</span>
+                </div>
+                <div class="job-mid">
+                    <span><span class="glyphicon glyphicon-map-marker"></span> Cupertino</span>
+                    <span><span class="glyphicon glyphicon-usd"></span> $90k - $130k</span>
+                    <span><span class="glyphicon glyphicon-time"></span> Posted 3d ago</span>
+                </div>
+                <p class="job-desc">Create intuitive user interfaces and seamless experiences for millions of users worldwide.</p>
+                <div class="job-tags">
+                    <span>Figma</span>
+                    <span>Prototyping</span>
+                    <span>Design Systems</span>
+                </div>
+            </a>
+
+            <a href="JobDetailsPage.html" class="job-card">
+                <div class="job-top">
+                    <div class="job-logo">AM</div>
+                    <div class="job-info">
+                        <h3>Full Stack Developer</h3>
+                        <p class="company"><span class="glyphicon glyphicon-briefcase"></span> Amazon</p>
+                    </div>
+                    <span class="job-badge full-time">Full Time</span>
+                </div>
+                <div class="job-mid">
+                    <span><span class="glyphicon glyphicon-map-marker"></span> Seattle</span>
+                    <span><span class="glyphicon glyphicon-usd"></span> $100k - $140k</span>
+                    <span><span class="glyphicon glyphicon-time"></span> Posted 5d ago</span>
+                </div>
+                <p class="job-desc">Develop end-to-end features for e-commerce platform. Work with Java, React, and AWS.</p>
+                <div class="job-tags">
+                    <span>Java</span>
+                    <span>React</span>
+                    <span>AWS</span>
+                </div>
+            </a>
+
+            <a href="JobDetailsPage.html" class="job-card">
+                <div class="job-top">
+                    <div class="job-logo">SF</div>
+                    <div class="job-info">
+                        <h3>DevOps Engineer</h3>
+                        <p class="company"><span class="glyphicon glyphicon-briefcase"></span> Salesforce</p>
+                    </div>
+                    <span class="job-badge full-time">Full Time</span>
+                </div>
+                <div class="job-mid">
+                    <span><span class="glyphicon glyphicon-map-marker"></span> San Francisco</span>
+                    <span><span class="glyphicon glyphicon-usd"></span> $110k - $150k</span>
+                    <span><span class="glyphicon glyphicon-time"></span> Posted 1w ago</span>
+                </div>
+                <p class="job-desc">Manage CI/CD pipelines, cloud infrastructure, and ensure system reliability at scale.</p>
+                <div class="job-tags">
+                    <span>Docker</span>
+                    <span>Terraform</span>
+                    <span>CI/CD</span>
+                </div>
+            </a>
+
+            <a href="JobDetailsPage.html" class="job-card">
+                <div class="job-top">
+                    <div class="job-logo">SP</div>
+                    <div class="job-info">
+                        <h3>Data Analyst</h3>
+                        <p class="company"><span class="glyphicon glyphicon-briefcase"></span> Spotify</p>
+                    </div>
+                    <span class="job-badge part-time">Part Time</span>
+                </div>
+                <div class="job-mid">
+                    <span><span class="glyphicon glyphicon-map-marker"></span> Remote</span>
+                    <span><span class="glyphicon glyphicon-usd"></span> $60k - $80k</span>
+                    <span><span class="glyphicon glyphicon-time"></span> Posted 4d ago</span>
+                </div>
+                <p class="job-desc">Analyze user behaviour data to drive product decisions and improve listening experience.</p>
+                <div class="job-tags">
+                    <span>SQL</span>
+                    <span>Python</span>
+                    <span>Tableau</span>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="pagination">
+            <a href="#" class="page-btn active">1</a>
+            <a href="#" class="page-btn">2</a>
+            <a href="#" class="page-btn">3</a>
+            <a href="#" class="page-btn">4</a>
+            <span class="page-dots">...</span>
+            <a href="#" class="page-btn">12</a>
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footgrid">
+            <div class="col">
+                <h4><span class="glyphicon glyphicon-briefcase"></span> JobPortal</h4>
+                <p style="font-size: 0.9rem; opacity: 0.75;">Connecting talent with opportunity since 2024.</p>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="LandingPage2.html">Home</a></li>
+                    <li><a href="JobsListingPage.html">Browse Jobs</a></li>
+                    <li><a href="DashboardPage.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="ProfilePage.html">Profile</a></li>
+                    <li><a href="MyApplicationsPage.html">My Applications</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">&copy; 2026 JobPortal. All rights reserved.</div>
+    </footer>
+
+    <script src="jobs_listing.js"></script>
+</body>
+</html>

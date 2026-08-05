@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Applications</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="my_applications_style.css" />
+</head>
+<body>
+
+    <a href="DashboardPage.html" class="back-arrow" title="back-arrow"><i class="glyphicon glyphicon-arrow-left"></i></a>
+
+    <nav>
+        <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
+        <ul>
+            <li><a href="DashboardPage.html" class="nav-link">Dashboard</a></li>
+            <li><a href="JobsListingPage.html" class="nav-link">Browse Jobs</a></li>
+            <li><a href="ProfilePage.html" class="nav-link">Profile</a></li>
+            <li><a href="LandingPage2.html" class="nav-btn">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <section id="my-applications">
+        <div class="app-header">
+            <h2>My Applications</h2>
+            <p>Track the status of all your job applications in one place.</p>
+        </div>
+
+        <div class="filter-tabs">
+            <input type="radio" name="filter" id="filter-all" checked>
+            <input type="radio" name="filter" id="filter-pending">
+            <input type="radio" name="filter" id="filter-interview">
+            <input type="radio" name="filter" id="filter-accepted">
+            <input type="radio" name="filter" id="filter-rejected">
+
+            <div class="filter-labels">
+                <label for="filter-all" class="filter-label">All</label>
+                <label for="filter-pending" class="filter-label">Pending <span class="count-badge pending-badge">3</span></label>
+                <label for="filter-interview" class="filter-label">Interview <span class="count-badge interview-badge">2</span></label>
+                <label for="filter-accepted" class="filter-label">Accepted <span class="count-badge accepted-badge">1</span></label>
+                <label for="filter-rejected" class="filter-label">Rejected <span class="count-badge rejected-badge">2</span></label>
+                <div class="filter-indicator"></div>
+            </div>
+
+            <div class="app-list">
+
+                <div class="app-card status-pending">
+                    <div class="app-card-left">
+                        <div class="app-card-logo">FB</div>
+                        <div class="app-card-info">
+                            <h3>Frontend Developer</h3>
+                            <p class="app-card-company">Facebook</p>
+                            <p class="app-card-detail"><span class="glyphicon glyphicon-map-marker"></span> Remote &bull; <span class="glyphicon glyphicon-usd"></span> $80k - $120k</p>
+                        </div>
+                    </div>
+                    <div class="app-card-right">
+                        <span class="app-status-tag pending">Pending</span>
+                        <span class="app-date">Applied 2 days ago</span>
+                    </div>
+                </div>
+
+                <div class="app-card status-interview">
+                    <div class="app-card-left">
+                        <div class="app-card-logo">GG</div>
+                        <div class="app-card-info">
+                            <h3>Backend Engineer</h3>
+                            <p class="app-card-company">Google</p>
+                            <p class="app-card-detail"><span class="glyphicon glyphicon-map-marker"></span> Mountain View &bull; <span class="glyphicon glyphicon-usd"></span> $120k - $160k</p>
+                        </div>
+                    </div>
+                    <div class="app-card-right">
+                        <span class="app-status-tag interview">Interview</span>
+                        <span class="app-date">Interview Fri 10AM</span>
+                    </div>
+                </div>
+
+                <div class="app-card status-rejected">
+                    <div class="app-card-left">
+                        <div class="app-card-logo">AP</div>
+                        <div class="app-card-info">
+                            <h3>UI/UX Designer</h3>
+                            <p class="app-card-company">Apple</p>
+                            <p class="app-card-detail"><span class="glyphicon glyphicon-map-marker"></span> Cupertino &bull; <span class="glyphicon glyphicon-usd"></span> $90k - $130k</p>
+                        </div>
+                    </div>
+                    <div class="app-card-right">
+                        <span class="app-status-tag rejected">Rejected</span>
+                        <span class="app-date">Applied 1 week ago</span>
+                    </div>
+                </div>
+
+                <div class="app-card status-pending">
+                    <div class="app-card-left">
+                        <div class="app-card-logo">AM</div>
+                        <div class="app-card-info">
+                            <h3>Full Stack Developer</h3>
+                            <p class="app-card-company">Amazon</p>
+                            <p class="app-card-detail"><span class="glyphicon glyphicon-map-marker"></span> Seattle &bull; <span class="glyphicon glyphicon-usd"></span> $100k - $140k</p>
+                        </div>
+                    </div>
+                    <div class="app-card-right">
+                        <span class="app-status-tag pending">Pending</span>
+                        <span class="app-date">Applied 5 days ago</span>
+                    </div>
+                </div>
+
+                <div class="app-card status-accepted">
+                    <div class="app-card-left">
+                        <div class="app-card-logo">SF</div>
+                        <div class="app-card-info">
+                            <h3>DevOps Engineer</h3>
+                            <p class="app-card-company">Salesforce</p>
+                            <p class="app-card-detail"><span class="glyphicon glyphicon-map-marker"></span> San Francisco &bull; <span class="glyphicon glyphicon-usd"></span> $110k - $150k</p>
+                        </div>
+                    </div>
+                    <div class="app-card-right">
+                        <span class="app-status-tag accepted">Accepted</span>
+                        <span class="app-date">Offered 2 weeks ago</span>
+                    </div>
+                </div>
+
+                <div class="app-card status-interview">
+                    <div class="app-card-left">
+                        <div class="app-card-logo">NF</div>
+                        <div class="app-card-info">
+                            <h3>Senior Frontend Developer</h3>
+                            <p class="app-card-company">Netflix</p>
+                            <p class="app-card-detail"><span class="glyphicon glyphicon-map-marker"></span> Los Angeles &bull; <span class="glyphicon glyphicon-usd"></span> $140k - $180k</p>
+                        </div>
+                    </div>
+                    <div class="app-card-right">
+                        <span class="app-status-tag interview">Interview</span>
+                        <span class="app-date">Interview Next Mon</span>
+                    </div>
+                </div>
+
+                <div class="app-card status-pending">
+                    <div class="app-card-left">
+                        <div class="app-card-logo">SP</div>
+                        <div class="app-card-info">
+                            <h3>Data Analyst</h3>
+                            <p class="app-card-company">Spotify</p>
+                            <p class="app-card-detail"><span class="glyphicon glyphicon-map-marker"></span> Remote &bull; <span class="glyphicon glyphicon-usd"></span> $60k - $80k</p>
+                        </div>
+                    </div>
+                    <div class="app-card-right">
+                        <span class="app-status-tag pending">Pending</span>
+                        <span class="app-date">Applied 4 days ago</span>
+                    </div>
+                </div>
+
+                <div class="app-card status-rejected">
+                    <div class="app-card-left">
+                        <div class="app-card-logo">TW</div>
+                        <div class="app-card-info">
+                            <h3>Software Engineer</h3>
+                            <p class="app-card-company">Twitter</p>
+                            <p class="app-card-detail"><span class="glyphicon glyphicon-map-marker"></span> San Francisco &bull; <span class="glyphicon glyphicon-usd"></span> $100k - $130k</p>
+                        </div>
+                    </div>
+                    <div class="app-card-right">
+                        <span class="app-status-tag rejected">Rejected</span>
+                        <span class="app-date">Applied 3 weeks ago</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footgrid">
+            <div class="col">
+                <h4><span class="glyphicon glyphicon-briefcase"></span> JobPortal</h4>
+                <p style="font-size: 0.9rem; opacity: 0.75;">Connecting talent with opportunity since 2024.</p>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="LandingPage2.html">Home</a></li>
+                    <li><a href="JobsListingPage.html">Browse Jobs</a></li>
+                    <li><a href="DashboardPage.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="ProfilePage.html">Profile</a></li>
+                    <li><a href="MyApplicationsPage.html">My Applications</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">&copy; 2026 JobPortal. All rights reserved.</div>
+    </footer>
+
+    <script src="my_applications.js"></script>
+</body>
+</html>

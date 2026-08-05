@@ -1,0 +1,520 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+.back-arrow {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: #fff;
+    background-color: #4f4dc3;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    z-index: 1001;
+}
+
+.back-arrow:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    background-color: #3a39a0;
+    text-decoration: none;
+    color: #fff;
+}
+
+.back-arrow:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #4f4dc3 0%, #9cbce8 50%, #b8d4f0 100%);
+    min-height: 100vh;
+    color: #fff;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    padding: 2% 5%;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+nav .logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+    gap: 8px;
+}
+
+nav ul .nav-link {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 14px;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+}
+
+nav ul .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+nav .nav-btn {
+    padding: 5px 15px;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+
+nav .nav-btn:hover {
+    background: #fff;
+    color: #4f4dc3;
+}
+
+#my-applications {
+    padding: 100px 5% 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.app-header {
+    margin-bottom: 25px;
+}
+
+.app-header h2 {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.app-header p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.filter-tabs input[type="radio"] {
+    display: none;
+}
+
+.filter-labels {
+    display: flex;
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 4px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.filter-label {
+    flex: 1;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    z-index: 1;
+}
+
+.filter-label:hover {
+    opacity: 0.85;
+}
+
+.filter-indicator {
+    display: none;
+}
+
+#filter-all:checked ~ .filter-labels .filter-indicator {
+    display: block;
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    width: calc(20% - 4px);
+    left: 4px;
+}
+
+#filter-pending:checked ~ .filter-labels .filter-indicator {
+    display: block;
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    width: calc(20% - 4px);
+    left: calc(20% + 3px);
+}
+
+#filter-interview:checked ~ .filter-labels .filter-indicator {
+    display: block;
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    width: calc(20% - 4px);
+    left: calc(40% + 2px);
+}
+
+#filter-accepted:checked ~ .filter-labels .filter-indicator {
+    display: block;
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    width: calc(20% - 4px);
+    left: calc(60% + 1px);
+}
+
+#filter-rejected:checked ~ .filter-labels .filter-indicator {
+    display: block;
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    width: calc(20% - 4px);
+    left: calc(80%);
+}
+
+#filter-all:checked ~ .filter-labels label[for="filter-all"],
+#filter-pending:checked ~ .filter-labels label[for="filter-pending"],
+#filter-interview:checked ~ .filter-labels label[for="filter-interview"],
+#filter-accepted:checked ~ .filter-labels label[for="filter-accepted"],
+#filter-rejected:checked ~ .filter-labels label[for="filter-rejected"] {
+    opacity: 1;
+}
+
+.count-badge {
+    padding: 2px 8px;
+    border-radius: 50px;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.pending-badge {
+    background: rgba(255, 152, 0, 0.3);
+    color: #ffb74d;
+}
+
+.interview-badge {
+    background: rgba(33, 150, 243, 0.3);
+    color: #64b5f6;
+}
+
+.accepted-badge {
+    background: rgba(76, 175, 80, 0.3);
+    color: #81c784;
+}
+
+.rejected-badge {
+    background: rgba(244, 67, 54, 0.3);
+    color: #e57373;
+}
+
+.app-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.app-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px 24px;
+    transition: all 0.3s ease;
+    flex-wrap: wrap;
+    gap: 12px;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.app-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.app-card-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.app-card-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.app-card-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.app-card-company {
+    font-size: 12px;
+    opacity: 0.75;
+    margin-bottom: 4px;
+}
+
+.app-card-detail {
+    font-size: 11px;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.app-card-right {
+    text-align: right;
+}
+
+.app-status-tag {
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.app-status-tag.pending {
+    background: rgba(255, 152, 0, 0.25);
+    color: #ffb74d;
+}
+
+.app-status-tag.interview {
+    background: rgba(33, 150, 243, 0.25);
+    color: #64b5f6;
+}
+
+.app-status-tag.accepted {
+    background: rgba(76, 175, 80, 0.25);
+    color: #81c784;
+}
+
+.app-status-tag.rejected {
+    background: rgba(244, 67, 54, 0.25);
+    color: #e57373;
+}
+
+.app-date {
+    display: block;
+    font-size: 10px;
+    opacity: 0.5;
+}
+
+/* CSS-only filtering logic */
+#filter-pending:checked ~ .app-list .app-card:not(.status-pending),
+#filter-interview:checked ~ .app-list .app-card:not(.status-interview),
+#filter-accepted:checked ~ .app-list .app-card:not(.status-accepted),
+#filter-rejected:checked ~ .app-list .app-card:not(.status-rejected) {
+    display: none;
+}
+
+.status-border-pending {
+    border-left: 4px solid #ffb74d;
+}
+
+.status-border-interview {
+    border-left: 4px solid #64b5f6;
+}
+
+.status-border-accepted {
+    border-left: 4px solid #81c784;
+}
+
+.status-border-rejected {
+    border-left: 4px solid #e57373;
+}
+
+footer {
+    padding: 25px 5% 15px;
+    background: rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.col ul {
+    list-style: none;
+}
+
+.col ul li {
+    margin-bottom: 5px;
+}
+
+.col ul li a {
+    opacity: 0.75;
+    transition: opacity 0.3s;
+    font-size: 9px;
+}
+
+.col ul li a:hover {
+    opacity: 1;
+}
+
+.bottom {
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 8.5px;
+    opacity: 0.6;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+    /* Hide the back-arrow on mobile so it doesn't block the nav */
+    .back-arrow {
+        display: none;
+    }
+
+    nav {
+        padding: 3% 4%;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(79, 77, 195, 0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .filter-labels {
+        flex-wrap: wrap;
+        border-radius: 15px;
+        gap: 4px;
+    }
+
+    .filter-label {
+        flex: none;
+        width: calc(50% - 4px);
+    }
+
+    .filter-indicator {
+        display: none !important;
+    }
+
+    .app-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .app-card-right {
+        text-align: left;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-header h2 {
+        font-size: 24px;
+    }
+
+    .app-card-left {
+        flex-wrap: wrap;
+    }
+
+    .filter-label {
+        font-size: 10px;
+        padding: 8px 10px;
+    }
+}
