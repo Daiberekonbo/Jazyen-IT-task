@@ -1,0 +1,151 @@
+👨🏾‍💻 Developer 1
+Authentication & User Account
+
+Since login already exists, let this developer build everything around user accounts.
+
+Pages:
+
+Email Verification
+Verify OTP
+Change Password
+Account Settings
+Privacy Settings
+Delete Account Confirmation
+👨🏾‍💻 Developer 2
+Company & Employer Module
+
+Right now only job seekers exist.
+
+Companies also need pages.
+
+Pages:
+
+Company List
+Company Profile
+Employer Dashboard
+Post a Job
+Edit Job
+Manage Jobs
+View Applicants
+Employer Profile
+👨🏾‍💻 Developer 3
+Static & Public Pages
+
+These pages make the website feel complete.
+
+Pages:
+
+About Us
+Contact Us
+FAQ
+Privacy Policy
+Terms & Conditions
+Cookies Policy
+Help Center
+404 Page
+Maintenance Page
+👨🏾‍💻 You (Lead Frontend)
+
+Since you've been building the core functionality and learning JavaScript, I'd keep you on the pages that will teach you the most.
+
+1. Saved Jobs ❤️
+
+Users save jobs.
+
+Features
+
+Save button
+Remove button
+Empty state
+Search
+Sort
+Apply directly
+2. Notifications 🔔
+
+Examples
+
+Application accepted
+Interview invitation
+New job matches
+Password changed
+
+Features
+
+Mark as read
+Delete
+Filter
+Unread count
+3. Messages / Inbox 💬
+
+Between employer and applicant.
+
+Features
+
+Conversation list
+Chat area
+Send message
+Search
+Online indicator
+4. Search Results Page
+
+Instead of only Job Listings.
+
+Features
+
+Search
+Recent searches
+Suggested searches
+Filters
+Sort
+5. Application Success Page
+
+After clicking Apply.
+
+Show
+
+Success animation
+Job summary
+View applications
+Browse more jobs
+6. User Settings
+
+Things like
+
+Dark Mode
+Language
+Notification preferences
+7. Reusable Components
+
+Since you're becoming better at JavaScript, create reusable UI pieces.
+
+Examples
+
+Navbar
+Sidebar
+Footer
+Modal
+Toast Notification
+Loading Spinner
+Confirmation Dialog
+Pagination Component
+Search Component
+
+These can later be reused across the whole website.
+
+Overall Project Division
+Developer	Responsibility	Estimated Pages
+Developer 1	Authentication & Account	6
+Developer 2	Employer Module	8
+Developer 3	Public/Information Pages	8
+You	Interactive User Features & Shared Components	7 pages + reusable components
+Since you're acting as the most involved frontend developer, I'd also suggest you take on one extra responsibility:
+
+Frontend Integration Lead
+
+Your teammates can build their pages independently, but you should be responsible for:
+
+Making sure everyone uses the same color palette.
+Making sure spacing and typography are consistent.
+Ensuring navigation links work between all pages.
+Reusing CSS classes and components where possible.
+Maki

@@ -1,0 +1,12 @@
+| Command                       | What it does                                              |
+| ----------------------------- | --------------------------------------------------------- |
+| `git clone <url>`             | Downloads the project from GitHub.                        |
+| `git status`                  | Shows changed files and current branch.                   |
+| `git branch`                  | Lists all branches.                                       |
+| `git checkout -b branch-name` | Creates and switches to a new branch.                     |
+| `git checkout branch-name`    | Switches to an existing branch.                           |
+| `git add .`                   | Stages all changed files.                                 |
+| `git commit -m "message"`     | Saves a snapshot of your changes.                         |
+| `git push origin branch-name` | Uploads your branch to GitHub.                            |
+| `git pull origin main`        | Downloads the latest changes from the main branch.        |
+| `git merge main`              | Merges the latest `main` branch into your current branch. |
