@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="messages.css" />
+</head>
+<body>
+    <a href="DashboardPage.html" class="back-arrow" title="back-arrow">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+    </a>
+
+    <nav>
+        <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
+        <ul>
+            <li><a href="DashboardPage.html" class="nav-link">Dashboard</a></li>
+            <li><a href="JobsListingPage.html" class="nav-link">Browse Jobs</a></li>
+            <li><a href="SavedJobsPage.html" class="nav-link">Saved Jobs</a></li>
+            <li><a href="LandingPage2.html" class="nav-btn">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <section id="messages">
+        <div class="messages-header">
+            <h2>Messages <span class="glyphicon glyphicon-envelope"></span></h2>
+            <p>Chat with employers about your applications.</p>
+        </div>
+
+        <div class="messages-container">
+            <!-- Conversation list (left panel) -->
+            <div class="conversation-list">
+                <div class="conversation-search">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <input type="text" id="conversationSearch" placeholder="Search conversations..." />
+                </div>
+                <div class="conversation-items" id="conversationItems">
+                    <!-- JavaScript will render conversations here -->
+                </div>
+            </div>
+
+            <!-- Chat area (right panel) -->
+            <div class="chat-area">
+                <div class="chat-header" id="chatHeader">
+                    <div class="chat-user-info">
+                        <div class="chat-avatar" id="chatAvatar">?</div>
+                        <div>
+                            <h4 id="chatName">Select a conversation</h4>
+                            <span class="online-status" id="chatStatus">Choose a conversation to start chatting</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-placeholder">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <h3>Select a conversation</h3>
+                        <p>Choose a conversation from the list to view messages.</p>
+                    </div>
+                </div>
+
+                <div class="chat-input-area" id="chatInputArea" style="display: none;">
+                    <input type="text" id="messageInput" placeholder="Type a message..." />
+                    <button id="sendBtn" class="send-btn">
+                        <span class="glyphicon glyphicon-send"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footgrid">
+            <div class="col">
+                <h4><span class="glyphicon glyphicon-briefcase"></span> JobPortal</h4>
+                <p style="font-size: 0.9rem; opacity: 0.75;">Connecting talent with opportunity since 2024.</p>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="LandingPage2.html">Home</a></li>
+                    <li><a href="JobsListingPage.html">Browse Jobs</a></li>
+                    <li><a href="DashboardPage.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="ProfilePage.html">Profile</a></li>
+                    <li><a href="MyApplicationsPage.html">My Applications</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">&copy; 2026 JobPortal. All rights reserved.</div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="messages.js"></script>
+</body>
+</html>

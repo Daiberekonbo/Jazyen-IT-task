@@ -1,10 +1,10 @@
 /* ============================================================
    PROFILE PAGE - JavaScript
+   Uses shared auth module (auth.js)
    ============================================================ */
 
 /* SECTION 1: CACHE DOM ELEMENTS */
 const editCheckbox = document.getElementById("edit-mode");
-const editToggle = document.querySelector(".edit-toggle");
 const editText = document.querySelector(".edit-text");
 const saveText = document.querySelector(".save-text");
 const picInitials = document.querySelector(".pic-initials");
@@ -18,9 +18,9 @@ const displayAbout = document.querySelector(".detail-section:nth-child(1) .displ
 const editAbout = document.querySelector(".about-field");
 const displaySkills = document.querySelector(".skills-display");
 const editSkills = document.querySelector(".skills-input");
-const displayExp = document.querySelectorAll(".display-field")[3];
+const displayExp = document.querySelector(".detail-section:nth-child(3) .exp-item");
 const editExp = document.querySelector(".exp-edit textarea");
-const displayEdu = document.querySelectorAll(".display-field")[4];
+const displayEdu = document.querySelector(".detail-section:nth-child(4) .display-field");
 const editEdu = document.querySelector(".edu-edit input");
 const uploadBtn = document.querySelector(".upload-btn");
 const resumeStatus = document.querySelector(".resume-status");
@@ -31,95 +31,82 @@ let profileData = null;
 
 /* SECTION 3: HELPER FUNCTIONS */
 function loadProfileData() {
-    const storedUser = localStorage.getItem("loggedInUser");
-    if (!storedUser) return;
-
-    const user = JSON.parse(storedUser);
-
-    // Default profile data
-    profileData = {
-        name: user.name || "David Johnson",
-        email: user.email || "david.johnson@email.com",
-        phone: "+1 (555) 123-4567",
-        about: "Experienced Frontend Developer with 5+ years building modern web applications. Passionate about creating intuitive user interfaces and writing clean, maintainable code.",
-        skills: ["React", "TypeScript", "JavaScript", "CSS/SASS", "HTML5", "Git"],
-        experience: "Senior Frontend Developer - TechCorp Inc. - 2021-Present - Led frontend team building SaaS platform\nFrontend Developer - StartupXYZ - 2019-2021 - Developed responsive apps with React",
-        education: "B.Sc. Computer Science - University of Technology - 2015-2019"
-    };
-
-    // Check if saved profile exists
-    const savedProfile = localStorage.getItem("profileData");
-    if (savedProfile) {
-        const parsed = JSON.parse(savedProfile);
-        // Merge saved data with defaults
-        Object.keys(parsed).forEach(key => {
-            profileData[key] = parsed[key];
-        });
-    }
-
+    profileData = getProfileData();
+    if (!profileData) return;
     updateDisplay();
 }
 
 function updateDisplay() {
     if (!profileData) return;
 
-    const firstName = profileData.name.split(" ")[0] || "D";
+    const firstName = profileData.name ? profileData.name.split(" ")[0] : "U";
     picInitials.textContent = firstName.charAt(0).toUpperCase();
 
-    displayName.textContent = profileData.name;
-    editName.value = profileData.name;
+    displayName.textContent = profileData.name || "Your Name";
+    editName.value = profileData.name || "";
 
-    displayEmail.textContent = profileData.email;
-    editEmail.value = profileData.email;
+    displayEmail.textContent = profileData.email || "your@email.com";
+    editEmail.value = profileData.email || "";
 
-    displayPhone.textContent = profileData.phone;
-    editPhone.value = profileData.phone;
+    displayPhone.textContent = profileData.phone || "Add your phone number";
+    editPhone.value = profileData.phone || "";
 
-    displayAbout.textContent = profileData.about;
-    editAbout.value = profileData.about;
+    displayAbout.textContent = profileData.bio || "Tell employers about yourself. Click Edit Profile to add your bio.";
+    editAbout.value = profileData.bio || "";
 
-    // Update skills tags
-    displaySkills.innerHTML = profileData.skills.map(s => `<span class="skill-tag">${s}</span>`).join("");
-    editSkills.value = profileData.skills.join(", ");
+    if (profileData.skills && profileData.skills.length > 0) {
+        displaySkills.innerHTML = profileData.skills.map(function(s) {
+            return `<span class="skill-tag">${s}</span>`;
+        }).join("");
+        editSkills.value = profileData.skills.join(", ");
+    } else {
+        displaySkills.innerHTML = '<span class="skill-tag" style="opacity: 0.5;">Add your skills</span>';
+        editSkills.value = "";
+    }
 
-    // Update experience display
-    const expLines = profileData.experience.split("\n");
-    displayExp.innerHTML = expLines.map(line => {
-        const parts = line.split(" - ");
-        if (parts.length >= 3) {
-            return `<div class="exp-item display-field"><strong>${parts[0]}</strong><span class="exp-company">${parts[1]} &bull; ${parts[2]}</span>${parts[3] ? `<p>${parts[3]}</p>` : ""}</div>`;
-        }
-        return `<div class="exp-item display-field">${line}</div>`;
-    }).join("");
-    editExp.value = profileData.experience;
+    if (profileData.experience) {
+        const expLines = profileData.experience.split("\n");
+        displayExp.innerHTML = expLines.map(function(line) {
+            const parts = line.split(" - ");
+            if (parts.length >= 3) {
+                return `<div class="exp-item display-field"><strong>${parts[0]}</strong><span class="exp-company">${parts[1]} &bull; ${parts[2]}</span>${parts[3] ? `<p>${parts[3]}</p>` : ""}</div>`;
+            }
+            return `<div class="exp-item display-field">${line}</div>`;
+        }).join("");
+    } else {
+        displayExp.innerHTML = '<div class="exp-item display-field" style="opacity: 0.5;">Add your work experience</div>';
+    }
+    editExp.value = profileData.experience || "";
 
-    displayEdu.textContent = profileData.education;
-    editEdu.value = profileData.education;
+    displayEdu.textContent = profileData.education || "Add your education";
+    editEdu.value = profileData.education || "";
 }
 
 function saveProfileData() {
     if (!profileData) return;
 
-    profileData.name = editName.value;
-    profileData.email = editEmail.value;
-    profileData.phone = editPhone.value;
-    profileData.about = editAbout.value;
-    profileData.skills = editSkills.value.split(",").map(s => s.trim()).filter(s => s);
-    profileData.experience = editExp.value;
-    profileData.education = editEdu.value;
+    const updatedData = {
+        name: editName.value,
+        email: editEmail.value,
+        phone: editPhone.value,
+        bio: editAbout.value,
+        skills: editSkills.value.split(",").map(function(s) {
+            return s.trim();
+        }).filter(function(s) {
+            return s;
+        }),
+        experience: editExp.value,
+        education: editEdu.value
+    };
 
-    localStorage.setItem("profileData", JSON.stringify(profileData));
-
-    // Also update the loggedInUser name if changed
-    const storedUser = localStorage.getItem("loggedInUser");
-    if (storedUser) {
-        const user = JSON.parse(storedUser);
-        user.name = profileData.name;
-        user.email = profileData.email;
-        localStorage.setItem("loggedInUser", JSON.stringify(user));
+    // Use shared auth module to update
+    const result = updateUserProfile(updatedData);
+    if (result.success) {
+        // Also save profileData for backward compat
+        localStorage.setItem("profileData", JSON.stringify(updatedData));
+        profileData = getProfileData();
+        updateDisplay();
     }
-
-    updateDisplay();
 }
 
 function toggleEditMode() {
@@ -128,8 +115,12 @@ function toggleEditMode() {
     const displayFields = document.querySelectorAll(".display-field");
     const editFields = document.querySelectorAll(".edit-field");
 
-    displayFields.forEach(f => f.style.display = isEditing ? "none" : "");
-    editFields.forEach(f => f.style.display = isEditing ? "" : "none");
+    displayFields.forEach(function(f) {
+        f.style.display = isEditing ? "none" : "";
+    });
+    editFields.forEach(function(f) {
+        f.style.display = isEditing ? "" : "none";
+    });
 
     editText.style.display = isEditing ? "none" : "";
     saveText.style.display = isEditing ? "" : "none";
@@ -140,52 +131,9 @@ function toggleEditMode() {
 }
 
 /* SECTION 4: EVENT LISTENERS */
-
-/* ------------------------------------------------
-   FUNCTION: handleSignOut()
-   
-   WHAT IT DOES:
-   Signs the user out by clearing their session data
-   from localStorage, then redirects to the landing page.
-   
-   WHY WE NEED IT:
-   - The "Sign Out" links currently just navigate to
-     LandingPage2.html without clearing the stored user.
-   - When the user goes back to Login, initLoginPage()
-     sees the stored user and redirects them back to
-     the Dashboard - so they're never actually signed out.
-   
-   HOW IT WORKS:
-   1. Remove the "loggedInUser" from localStorage
-   2. Remove the "rememberMe" preference
-   3. Navigate to the landing page
-   ------------------------------------------------ */
-function handleSignOut() {
-    // Step 1: Remove the logged-in user from localStorage
-    localStorage.removeItem("loggedInUser");
-
-    // Step 2: Remove the remember-me preference
-    localStorage.removeItem("rememberMe");
-
-    // Step 3: Navigate to the landing page
-    window.location.href = "LandingPage2.html";
-}
-
-// Attach sign-out handler to all "Sign Out" links
-document.querySelectorAll('a[href="LandingPage2.html"]').forEach(function(link) {
-    link.addEventListener("click", function(event) {
-        // Prevent the default navigation
-        event.preventDefault();
-        // Call our sign-out function instead
-        handleSignOut();
-    });
-});
-
 editCheckbox.addEventListener("change", toggleEditMode);
 
 uploadBtn.addEventListener("click", function() {
-    // Simulate file upload
-    // LATER BACKEND: POST /api/profile/resume with FormData
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = ".pdf,.doc,.docx";
@@ -201,19 +149,12 @@ uploadBtn.addEventListener("click", function() {
 
 /* SECTION 5: MAIN LOGIC */
 function initProfile() {
-    const storedUser = localStorage.getItem("loggedInUser");
-    if (!storedUser) {
-        window.location.href = "Login.html";
-        return;
-    }
+    if (!requireAuth()) return;
 
     loadProfileData();
 
-    // Start in view mode
     editCheckbox.checked = false;
     toggleEditMode();
-
-    console.log("Profile page initialized");
 }
 
 document.addEventListener("DOMContentLoaded", initProfile);

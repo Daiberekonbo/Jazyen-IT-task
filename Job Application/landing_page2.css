@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #4f4dc3 0%, #9cbce8 50%, #b8d4f0 100%);
+    background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 50%, #a5d6a7 100%);
     min-height: 100vh;
     color: #fff;
     line-height: 1.6;
@@ -68,11 +68,11 @@ nav .gsbtn {
 }
 nav .snbtn:hover {
     background: #fff;
-    color: #4f4dc3;
+    color: #2e7d32;
 }
 nav .gsbtn:hover {
     background: #fff;
-    color: #4f4dc3;
+    color: #2e7d32;
 }
 #home {
     display: flex;
@@ -121,7 +121,7 @@ nav .gsbtn:hover {
 .homebtns .jnbtn {
     border: none;
     background-color: #fff;
-    color:#4f4dc3;
+    color:#2e7d32;
     padding: 9px 25px;
     transition: all 0.3s ease;
     border-radius: 50px;
@@ -152,7 +152,7 @@ nav .gsbtn:hover {
     background-color: #fff;
     transform: translate(-3px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-    color: #4f4dc3;
+    color: #2e7d32;
 }
 .homeimg {
     flex: 1;
@@ -287,7 +287,7 @@ nav .gsbtn:hover {
     margin: 0 auto 12px;
     font-size: 15px;
     font-weight: 800;
-    color: #4f4dc3;
+    color: #2e7d32;
 }
 .step h3 {
     font-size: 12px;
@@ -401,7 +401,7 @@ nav .gsbtn:hover {
 .ctabtns .cfabtn {
     padding: 10px 28px;
     background: #fff;
-    color: #4f4dc3;
+    color: #2e7d32;
     border: none;
     border-radius: 50px;
     font-weight: 700;
@@ -424,7 +424,7 @@ nav .gsbtn:hover {
 }
 .ctabtns .sibtn:hover {
     background: #fff;
-    color: #4f4dc3;
+    color: #2e7d32;
     transform: translateY(-3px);
 }
 footer {
@@ -502,7 +502,7 @@ footer {
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: rgba(79, 77, 195, 0.95);
+                background: rgba(46, 125, 50, 0.95);
                 -webkit-backdrop-filter: blur(10px);
                 backdrop-filter: blur(10px);
                 padding: 1.5rem;
@@ -599,7 +599,7 @@ footer {
     height: 50px;
     border-radius: 50%; /* Makes it a circle */
     background: #fff;
-    color: #4f4dc3;
+    color: #2e7d32;
     border: none;
     font-size: 24px;
     font-weight: bold;
@@ -614,7 +614,7 @@ footer {
 .scroll-to-top:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    background: #4f4dc3;
+    background: #2e7d32;
     color: #fff;
 }
 

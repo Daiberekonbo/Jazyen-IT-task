@@ -1,3 +1,8 @@
+/* ============================================================
+   DASHBOARD PAGE - Stylesheet
+   Green, White, Orange Theme
+   ============================================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +16,7 @@
     left: 20px;
     font-size: 24px;
     color: #fff;
-    background-color: #4f4dc3;
+    background-color: #2e7d32;
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -27,19 +32,19 @@
 .back-arrow:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    background-color: #3a39a0;
+    background-color: #1b5e20;
     text-decoration: none;
     color: #fff;
 }
 
 .back-arrow:focus {
-    outline: 2px solid #fff;
+    outline: 2px solid #ff9800;
     outline-offset: 2px;
 }
 
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #4f4dc3 0%, #9cbce8 50%, #b8d4f0 100%);
+    background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 50%, #a5d6a7 100%);
     min-height: 100vh;
     color: #fff;
     line-height: 1.6;
@@ -56,7 +61,7 @@ nav {
     align-items: center;
     position: fixed;
     padding: 2% 5%;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(46, 125, 50, 0.85);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     top: 0;
     left: 0;
@@ -120,7 +125,7 @@ nav .nav-btn {
 
 nav .nav-btn:hover {
     background: #fff;
-    color: #4f4dc3;
+    color: #2e7d32;
 }
 
 .sidebar-checkbox {
@@ -133,7 +138,7 @@ nav .nav-btn:hover {
     left: -300px;
     width: 280px;
     height: 100vh;
-    background: rgba(79, 77, 195, 0.97);
+    background: rgba(46, 125, 50, 0.97);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     border-right: 1px solid rgba(255, 255, 255, 0.15);
@@ -299,13 +304,13 @@ nav .nav-btn:hover {
 }
 
 .stat-icon.saved {
-    background: rgba(33, 150, 243, 0.25);
-    color: #64b5f6;
+    background: rgba(255, 152, 0, 0.25);
+    color: #ffb74d;
 }
 
 .stat-icon.interviews {
-    background: rgba(255, 152, 0, 0.25);
-    color: #ffb74d;
+    background: rgba(33, 150, 243, 0.25);
+    color: #64b5f6;
 }
 
 .stat-icon.profile {
@@ -397,22 +402,22 @@ nav .nav-btn:hover {
 
 .app-status.pending {
     background: rgba(255, 152, 0, 0.25);
-    color: #dfc7a3;
+    color: #ffb74d;
 }
 
 .app-status.interview {
     background: rgba(33, 150, 243, 0.25);
-    color: #b6d4ec;
+    color: #64b5f6;
 }
 
 .app-status.rejected {
     background: rgba(244, 67, 54, 0.25);
-    color: #f1d8d8;
+    color: #e57373;
 }
 
 .app-status.accepted {
     background: rgba(76, 175, 80, 0.25);
-    color: #c3e1c5;
+    color: #81c784;
 }
 
 .progress-circle {
@@ -482,7 +487,7 @@ nav .nav-btn:hover {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: #64b5f6;
+    background: #ff9800;
     flex-shrink: 0;
     margin-top: 4px;
 }
@@ -562,7 +567,6 @@ footer {
 }
 
 @media (max-width: 900px) {
-    /* Hide the back-arrow on mobile so it doesn't block the hamburger */
     .back-arrow {
         display: none;
     }
@@ -582,7 +586,7 @@ footer {
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(79, 77, 195, 0.95);
+        background: rgba(46, 125, 50, 0.95);
         -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         padding: 1.5rem;
@@ -598,7 +602,6 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
 
-    /* Make dashboard content not hidden behind fixed nav */
     #dashboard {
         padding-top: 80px;
     }
@@ -625,7 +628,6 @@ footer {
         font-size: 22px;
     }
 
-    /* Improve mobile spacing */
     .dash-header {
         padding: 0 10px;
     }

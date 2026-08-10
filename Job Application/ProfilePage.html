@@ -17,8 +17,10 @@
         <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
         <ul>
             <li><a href="DashboardPage.html" class="nav-link">Dashboard</a></li>
-            <li><a href="JobsListingPage.html" class="nav-link">Browse Jobs</a></li>
-            <li><a href="MyApplicationsPage.html" class="nav-link">My Applications</a></li>
+            <li><a href="SavedJobsPage.html" class="nav-link">Saved Jobs</a></li>
+            <li><a href="NotificationsPage.html" class="nav-link">Notifications</a></li>
+            <li><a href="MessagesPage.html" class="nav-link">Messages</a></li>
+            <li><a href="SettingsPage.html" class="nav-link">Settings</a></li>
             <li><a href="LandingPage2.html" class="nav-btn">Sign Out</a></li>
         </ul>
     </nav>
@@ -35,69 +37,54 @@
         <div class="profile-card">
             <div class="profile-pic-section">
                 <div class="profile-pic">
-                    <span class="pic-initials">D</span>
+                    <span class="pic-initials">U</span>
                 </div>
                 <div class="profile-name">
-                    <h3 class="display-field">David Johnson</h3>
-                    <input type="text" class="edit-field name-field" value="David Johnson" title="Full name">
-                    <p class="display-field">david.johnson@email.com</p>
-                    <input type="email" class="edit-field email-field" value="david.johnson@email.com" title="Email address">
-                    <p class="display-field">+1 (555) 123-4567</p>
-                    <input type="text" class="edit-field phone-field" value="+1 (555) 123-4567" title="Phone number">
+                    <h3 class="display-field">Your Name</h3>
+                    <input type="text" class="edit-field name-field" value="" title="Full name">
+                    <p class="display-field">your@email.com</p>
+                    <input type="email" class="edit-field email-field" value="" title="Email address">
+                    <p class="display-field">Add your phone number</p>
+                    <input type="text" class="edit-field phone-field" value="" title="Phone number">
                 </div>
             </div>
 
             <div class="profile-details">
                 <div class="detail-section">
                     <h4>About</h4>
-                    <p class="display-field">Experienced Frontend Developer with 5+ years building modern web applications. Passionate about creating intuitive user interfaces and writing clean, maintainable code.</p>
-                    <textarea class="edit-field about-field" rows="4" title="About me">Experienced Frontend Developer with 5+ years building modern web applications. Passionate about creating intuitive user interfaces and writing clean, maintainable code.</textarea>
+                    <p class="display-field">Tell employers about yourself. Click Edit Profile to add your bio.</p>
+                    <textarea class="edit-field about-field" rows="4" title="About me"></textarea>
                 </div>
 
                 <div class="detail-section">
                     <h4>Skills</h4>
                     <div class="skills-display display-field">
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">CSS/SASS</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag" style="opacity: 0.5;">Add your skills</span>
                     </div>
                     <div class="edit-field skills-edit">
-                        <input type="text" class="skills-input" value="React, TypeScript, JavaScript, CSS/SASS, HTML5, Git" placeholder="Enter skills separated by commas">
+                        <input type="text" class="skills-input" value="" placeholder="Enter skills separated by commas">
                     </div>
                 </div>
 
                 <div class="detail-section">
                     <h4>Experience</h4>
-                    <div class="exp-item display-field">
-                        <strong>Senior Frontend Developer</strong>
-                        <span class="exp-company">TechCorp Inc. &bull; 2021 - Present</span>
-                        <p>Led the frontend team in building a SaaS platform used by 50,000+ users. Improved performance by 40%.</p>
-                    </div>
-                    <div class="exp-item display-field">
-                        <strong>Frontend Developer</strong>
-                        <span class="exp-company">StartupXYZ &bull; 2019 - 2021</span>
-                        <p>Developed responsive web applications using React and Redux. Collaborated with design team on UI/UX.</p>
-                    </div>
+                    <div class="exp-item display-field" style="opacity: 0.5;">Add your work experience</div>
                     <div class="edit-field exp-edit">
-                        <textarea rows="3" placeholder="Experience: Company, Role, Years, Description">Senior Frontend Developer - TechCorp Inc. - 2021-Present - Led frontend team building SaaS platform
-Frontend Developer - StartupXYZ - 2019-2021 - Developed responsive apps with React</textarea>
+                        <textarea rows="3" placeholder="Experience: Company, Role, Years, Description"></textarea>
                     </div>
                 </div>
 
                 <div class="detail-section">
                     <h4>Education</h4>
-                    <p class="display-field"><strong>B.Sc. Computer Science</strong> &bull; University of Technology &bull; 2015 - 2019</p>
+                    <p class="display-field">Add your education</p>
                     <div class="edit-field edu-edit">
-                        <input type="text" value="B.Sc. Computer Science - University of Technology - 2015-2019" placeholder="Degree, Institution, Years">
+                        <input type="text" value="" placeholder="Degree, Institution, Years">
                     </div>
                 </div>
 
                 <div class="detail-section">
                     <h4>Resume</h4>
-                    <p class="display-field resume-status"><span class="glyphicon glyphicon-file"></span> David_Johnson_Resume.pdf <span class="resume-size">(2.4 MB)</span></p>
+                    <p class="display-field resume-status"><span class="glyphicon glyphicon-file"></span> No resume uploaded</p>
                     <div class="edit-field resume-edit">
                         <button class="upload-btn"><span class="glyphicon glyphicon-upload"></span> Upload New Resume</button>
                     </div>
@@ -139,6 +126,7 @@ Frontend Developer - StartupXYZ - 2019-2021 - Developed responsive apps with Rea
         <div class="bottom">&copy; 2026 JobPortal. All rights reserved.</div>
     </footer>
 
+    <script src="auth.js"></script>
     <script src="profile.js"></script>
 </body>
 </html>

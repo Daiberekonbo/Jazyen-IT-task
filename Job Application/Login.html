@@ -3,106 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Login | JobPortal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="design_system.css">
     <link rel="stylesheet" href="login_style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body>
-    
-    <a href="LandingPage2.html" class="back-arrow" title="back-arrow"><i class="glyphicon glyphicon-arrow-left"></i></a>
+<body class="auth-page">
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-brand">
+                <div class="brand-logo">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h1>Welcome Back</h1>
+                <p>Sign in to your JobPortal account</p>
+            </div>
 
-    <div id="container">
-        <div id="image">
-            <img src="images.jpg" alt="Job Application">
-        </div>
-
-        <div id="frm">
-            <form id="loginForm" novalidate>
-                <h4>Login</h4>
-
-                <!-- ============================================================
-                EMAIL FIELD
-                The email input where users type their email address.
-                We'll validate this using JavaScript.
-                ============================================================ -->
-                <fieldset>
-                    <legend><i class="glyphicon glyphicon-envelope"></i>Email:</legend>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email">
-                    <!-- Error message for email validation - hidden by default -->
-                    <p id="emailError" class="error-message"></p>
-                </fieldset>
-
-                <!-- ============================================================
-                PASSWORD FIELD WITH SHOW/HIDE TOGGLE
-                The password input is type="password" so dots show instead of text.
-                We'll add a button that lets users toggle between showing/hiding
-                the password text.
-                ============================================================ -->
-                <fieldset class="password-field">
-                    <legend><i class="glyphicon glyphicon-lock"></i>Password:</legend>
-                    <div class="password-wrapper">
-                        <input type="password" id="password" name="password" required placeholder="Enter your password">
-                        <!-- Show/Hide password button - an eye icon -->
-                        <button type="button" id="togglePassword" class="toggle-password" aria-label="Show password">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                        </button>
+            <form id="loginForm" class="auth-form" novalidate>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            class="form-input" 
+                            placeholder="you@example.com"
+                            autocomplete="email"
+                            aria-label="Email address"
+                        >
                     </div>
-                    <!-- Error message for password validation - hidden by default -->
-                    <p id="passwordError" class="error-message"></p>
-                </fieldset>
-
-                <!-- ============================================================
-                REMEMBER ME CHECKBOX
-                A simple checkbox that, when checked, indicates the user wants
-                to stay logged in. For now it's just UI - backend handles this later.
-                ============================================================ -->
-                <div class="remember-me">
-                    <input type="checkbox" id="rememberMe" name="rememberMe">
-                    <label for="rememberMe">Remember Me</label>
+                    <span class="error-message hidden" id="emailError"></span>
                 </div>
 
-                <!-- ============================================================
-                ERROR MESSAGE CONTAINER
-                This shows general error messages (like "Invalid credentials").
-                It's hidden by default and shown when there's an error.
-                ============================================================ -->
-                <div id="generalError" class="error-message general-error"></div>
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="password">Password</label>
+                        <a href="ForgotPassword.html" class="forgot-link">Forgot password?</a>
+                    </div>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="form-input" 
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            aria-label="Password"
+                        >
+                        <button 
+                            type="button" 
+                            class="password-toggle" 
+                            id="togglePassword"
+                            aria-label="Show password"
+                        >
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="error-message hidden" id="passwordError"></span>
+                </div>
 
-                <!-- ============================================================
-                SUCCESS MESSAGE CONTAINER
-                This shows a success message when login is simulated successfully.
-                ============================================================ -->
-                <div id="successMessage" class="success-message"></div>
+                <div class="form-group form-check">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span class="checkbox-custom"></span>
+                        Remember me
+                    </label>
+                </div>
 
-                <!-- ============================================================
-                LOGIN BUTTON
-                We changed type from "submit" to "button" so we have full control
-                over what happens when clicked. A type="submit" would try to send
-                the form to a server, which we don't want since we're simulating.
-                ============================================================ -->
-                <button type="button" id="loginButton" class="login-button">
-                    <!-- Button text (label) -->
-                    <span id="buttonText">Login</span>
-                    <!-- Loading spinner - hidden by default, shown during simulated login -->
-                    <span id="loadingSpinner" class="spinner hidden">
-                        <span class="glyphicon glyphicon-refresh spinning"></span>
-                    </span>
+                <div class="general-error hidden" id="generalError"></div>
+                <div class="success-message hidden" id="successMessage"></div>
+
+                <button type="submit" id="loginButton" class="btn btn-primary btn-block btn-lg">
+                    <span id="buttonText">Sign In</span>
+                    <span id="loadingSpinner" class="spinner-inline hidden"><i class="fas fa-spinner fa-spin"></i></span>
                 </button>
-
-                <p>Don't have an account? <a href="Register.html">Register here</a></p>
-                <p><a href="ForgotPassword.html">Forgot Password?</a></p>
-
             </form>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="Register.html" class="link-primary">Create one</a></p>
+            </div>
         </div>
     </div>
 
-    <!-- ============================================================
-    JAVASCRIPT FILE
-    We link our external JavaScript file at the bottom of the page.
-    This is the same pattern as the Landing Page.
-    All the Login logic is in this separate file.
-    ============================================================ -->
+    <script src="auth.js"></script>
     <script src="login.js"></script>
-
 </body>
 </html>

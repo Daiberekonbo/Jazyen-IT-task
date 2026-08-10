@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="search_results.css" />
+</head>
+<body>
+    <a href="DashboardPage.html" class="back-arrow" title="back-arrow">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+    </a>
+
+    <nav>
+        <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
+        <ul>
+            <li><a href="DashboardPage.html" class="nav-link">Dashboard</a></li>
+            <li><a href="JobsListingPage.html" class="nav-link">Browse Jobs</a></li>
+            <li><a href="SavedJobsPage.html" class="nav-link">Saved Jobs</a></li>
+            <li><a href="LandingPage2.html" class="nav-btn">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <section id="search-results">
+        <div class="search-header">
+            <h2>Search Results <span class="glyphicon glyphicon-search"></span></h2>
+            <p>Find the perfect job for you.</p>
+        </div>
+
+        <!-- Search bar -->
+        <div class="search-bar">
+            <span class="glyphicon glyphicon-search search-icon"></span>
+            <input type="text" id="searchInput" placeholder="Search jobs, companies, keywords..." />
+            <button class="search-btn" id="searchBtn">Search</button>
+        </div>
+
+        <!-- Recent and suggested searches -->
+        <div class="search-suggestions">
+            <div class="suggestion-section">
+                <h4><span class="glyphicon glyphicon-time"></span> Recent Searches</h4>
+                <div class="search-chips" id="recentSearches"></div>
+            </div>
+            <div class="suggestion-section">
+                <h4><span class="glyphicon glyphicon-flash"></span> Suggested Searches</h4>
+                <div class="search-chips">
+                    <span class="chip" data-search="Frontend Developer">Frontend Developer</span>
+                    <span class="chip" data-search="React">React</span>
+                    <span class="chip" data-search="Remote">Remote</span>
+                    <span class="chip" data-search="Senior">Senior</span>
+                    <span class="chip" data-search="Entry Level">Entry Level</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-group">
+                <label for="location"><span class="glyphicon glyphicon-map-marker"></span> Location</label>
+                <select id="location">
+                    <option>All Locations</option>
+                    <option>Remote</option>
+                    <option>New York</option>
+                    <option>San Francisco</option>
+                    <option>London</option>
+                    <option>Lagos</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="category"><span class="glyphicon glyphicon-list"></span> Category</label>
+                <select id="category">
+                    <option>All Categories</option>
+                    <option>Frontend</option>
+                    <option>Backend</option>
+                    <option>Full Stack</option>
+                    <option>Design</option>
+                    <option>DevOps</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="experience"><span class="glyphicon glyphicon-education"></span> Experience</label>
+                <select id="experience">
+                    <option>Any Experience</option>
+                    <option>Entry Level</option>
+                    <option>Mid Level</option>
+                    <option>Senior</option>
+                    <option>Lead</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="sortBy"><span class="glyphicon glyphicon-sort"></span> Sort By</label>
+                <select id="sortBy">
+                    <option value="relevance">Relevance</option>
+                    <option value="newest">Newest First</option>
+                    <option value="salary-high">Salary: High to Low</option>
+                    <option value="salary-low">Salary: Low to High</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Results info -->
+        <div class="results-info">
+            <span>Found <strong id="resultCount">0</strong> jobs</span>
+        </div>
+
+        <!-- Job grid -->
+        <div class="job-grid" id="jobGrid"></div>
+
+        <!-- Empty state -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <span class="glyphicon glyphicon-search"></span>
+            <h3>No jobs found</h3>
+            <p>Try adjusting your search terms or filters.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footgrid">
+            <div class="col">
+                <h4><span class="glyphicon glyphicon-briefcase"></span> JobPortal</h4>
+                <p style="font-size: 0.9rem; opacity: 0.75;">Connecting talent with opportunity since 2024.</p>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="LandingPage2.html">Home</a></li>
+                    <li><a href="JobsListingPage.html">Browse Jobs</a></li>
+                    <li><a href="DashboardPage.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="ProfilePage.html">Profile</a></li>
+                    <li><a href="MyApplicationsPage.html">My Applications</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">&copy; 2026 JobPortal. All rights reserved.</div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="search_results.js"></script>
+</body>
+</html>

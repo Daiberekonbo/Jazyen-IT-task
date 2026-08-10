@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="notifications.css" />
+</head>
+<body>
+    <a href="DashboardPage.html" class="back-arrow" title="back-arrow">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+    </a>
+
+    <nav>
+        <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
+        <ul>
+            <li><a href="DashboardPage.html" class="nav-link">Dashboard</a></li>
+            <li><a href="JobsListingPage.html" class="nav-link">Browse Jobs</a></li>
+            <li><a href="SavedJobsPage.html" class="nav-link">Saved Jobs</a></li>
+            <li><a href="LandingPage2.html" class="nav-btn">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <section id="notifications">
+        <div class="notif-header">
+            <h2>Notifications <span class="glyphicon glyphicon-bell"></span></h2>
+            <p>Stay updated on your applications and job matches.</p>
+        </div>
+
+        <div class="notif-tabs">
+            <button class="tab-btn active" data-filter="all">All</button>
+            <button class="tab-btn" data-filter="unread">Unread <span class="unread-badge" id="unreadBadge">0</span></button>
+            <button class="tab-btn" data-filter="read">Read</button>
+        </div>
+
+        <div class="notif-list" id="notifList">
+            <!-- JavaScript will render notifications here -->
+        </div>
+
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <span class="glyphicon glyphicon-bell"></span>
+            <h3>No notifications</h3>
+            <p>You're all caught up!</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footgrid">
+            <div class="col">
+                <h4><span class="glyphicon glyphicon-briefcase"></span> JobPortal</h4>
+                <p style="font-size: 0.9rem; opacity: 0.75;">Connecting talent with opportunity since 2024.</p>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="LandingPage2.html">Home</a></li>
+                    <li><a href="JobsListingPage.html">Browse Jobs</a></li>
+                    <li><a href="DashboardPage.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="ProfilePage.html">Profile</a></li>
+                    <li><a href="MyApplicationsPage.html">My Applications</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">&copy; 2026 JobPortal. All rights reserved.</div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="notifications.js"></script>
+</body>
+</html>

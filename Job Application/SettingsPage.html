@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="settings.css" />
+</head>
+<body>
+    <a href="DashboardPage.html" class="back-arrow" title="back-arrow">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+    </a>
+
+    <nav>
+        <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
+        <ul>
+            <li><a href="DashboardPage.html" class="nav-link">Dashboard</a></li>
+            <li><a href="JobsListingPage.html" class="nav-link">Browse Jobs</a></li>
+            <li><a href="SavedJobsPage.html" class="nav-link">Saved Jobs</a></li>
+            <li><a href="LandingPage2.html" class="nav-btn">Sign Out</a></li>
+        </ul>
+    </nav>
+
+    <section id="settings">
+        <div class="settings-header">
+            <h2>Settings <span class="glyphicon glyphicon-cog"></span></h2>
+            <p>Customize your JobPortal experience.</p>
+        </div>
+
+        <div class="settings-container">
+            <!-- Appearance settings -->
+            <div class="settings-card">
+                <h3><span class="glyphicon glyphicon-eye-open"></span> Appearance</h3>
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <strong>Dark Mode</strong>
+                        <span>Switch to a darker theme for reduced eye strain</span>
+                    </div>
+                    <label class="toggle" title="Toggle dark mode">
+                        <input type="checkbox" id="darkModeToggle" aria-label="Dark Mode">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Language settings -->
+            <div class="settings-card">
+                <h3><span class="glyphicon glyphicon-globe"></span> Language</h3>
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <strong>Language</strong>
+                        <span>Choose your preferred language</span>
+                    </div>
+                    <select id="languageSelect" class="setting-select" title="Select language">
+                        <option value="en">English</option>
+                        <option value="fr">French</option>
+                        <option value="es">Spanish</option>
+                        <option value="yo">Yoruba</option>
+                        <option value="ha">Hausa</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Notification preferences -->
+            <div class="settings-card">
+                <h3><span class="glyphicon glyphicon-bell"></span> Notification Preferences</h3>
+
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <strong>Job Matches</strong>
+                        <span>Get notified when a job matches your profile</span>
+                    </div>
+                    <label class="toggle" title="Toggle job match notifications">
+                        <input type="checkbox" id="notifJobMatches" checked aria-label="Job Matches">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <strong>Application Updates</strong>
+                        <span>Get notified when your application status changes</span>
+                    </div>
+                    <label class="toggle" title="Toggle application update notifications">
+                        <input type="checkbox" id="notifAppUpdates" checked aria-label="Application Updates">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <strong>Messages</strong>
+                        <span>Get notified when you receive a new message</span>
+                    </div>
+                    <label class="toggle" title="Toggle message notifications">
+                        <input type="checkbox" id="notifMessages" checked aria-label="Messages">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <strong>Marketing</strong>
+                        <span>Receive promotional emails and offers</span>
+                    </div>
+                    <label class="toggle" title="Toggle marketing notifications">
+                        <input type="checkbox" id="notifMarketing" aria-label="Marketing">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Save button -->
+            <button class="save-settings-btn" id="saveSettingsBtn">
+                <span class="glyphicon glyphicon-ok"></span> Save Settings
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footgrid">
+            <div class="col">
+                <h4><span class="glyphicon glyphicon-briefcase"></span> JobPortal</h4>
+                <p style="font-size: 0.9rem; opacity: 0.75;">Connecting talent with opportunity since 2024.</p>
+            </div>
+            <div class="col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="LandingPage2.html">Home</a></li>
+                    <li><a href="JobsListingPage.html">Browse Jobs</a></li>
+                    <li><a href="DashboardPage.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="ProfilePage.html">Profile</a></li>
+                    <li><a href="MyApplicationsPage.html">My Applications</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom">&copy; 2026 JobPortal. All rights reserved.</div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>

@@ -37,13 +37,11 @@ function animateCounters() {
 }
 
 function updateUserInfo() {
-    // Try to get logged-in user from localStorage
     const storedUser = localStorage.getItem("loggedInUser");
 
     if (storedUser) {
         currentUser = JSON.parse(storedUser);
 
-        // Update welcome message with user's name
         if (currentUser.name) {
             const firstName = currentUser.name.split(" ")[0];
             welcomeHeading.innerHTML = 'Welcome back, ' + firstName + '! <span class="wave">👋</span>';
@@ -54,6 +52,24 @@ function updateUserInfo() {
         if (currentUser.email) {
             sidebarEmail.textContent = currentUser.email;
         }
+    }
+}
+
+function updateStatsFromData() {
+    // Get applied jobs count from localStorage
+    const appliedJobs = JSON.parse(localStorage.getItem("appliedJobs")) || [];
+    const savedJobs = JSON.parse(localStorage.getItem("savedJobs")) || [];
+
+    // Update the applied jobs stat
+    const appliedStat = document.querySelector('.stat-card .stat-icon.applied').parentElement.querySelector('.stat-num');
+    if (appliedStat) {
+        appliedStat.setAttribute("data-target", appliedJobs.length);
+    }
+
+    // Update the saved jobs stat
+    const savedStat = document.querySelector('.stat-card .stat-icon.saved').parentElement.querySelector('.stat-num');
+    if (savedStat) {
+        savedStat.setAttribute("data-target", savedJobs.length);
     }
 }
 
@@ -74,51 +90,15 @@ function closeSidebar() {
 }
 
 /* SECTION 4: EVENT LISTENERS */
-
-/* ------------------------------------------------
-   FUNCTION: handleSignOut()
-   
-   WHAT IT DOES:
-   Signs the user out by clearing their session data
-   from localStorage, then redirects to the landing page.
-   
-   WHY WE NEED IT:
-   - The "Sign Out" links currently just navigate to
-     LandingPage2.html without clearing the stored user.
-   - When the user goes back to Login, initLoginPage()
-     sees the stored user and redirects them back to
-     the Dashboard - so they're never actually signed out.
-   
-   HOW IT WORKS:
-   1. Remove the "loggedInUser" from localStorage
-   2. Remove the "rememberMe" preference
-   3. Navigate to the landing page
-   
-   LATER BACKEND CONNECTION:
-   When using JWT tokens, we would also:
-   - Call POST /api/auth/logout to invalidate the token
-   - Remove the token from localStorage
-   ------------------------------------------------ */
 function handleSignOut() {
-    // Step 1: Remove the logged-in user from localStorage
-    // This is what "signing out" means - we clear the session
     localStorage.removeItem("loggedInUser");
-
-    // Step 2: Remove the remember-me preference
     localStorage.removeItem("rememberMe");
-
-    // Step 3: Navigate to the landing page
-    // The user is now signed out, so they can see the landing page
     window.location.href = "LandingPage2.html";
 }
 
-// Attach sign-out handler to all "Sign Out" links
-// This includes both the nav menu and the sidebar links
 document.querySelectorAll('a[href="LandingPage2.html"]').forEach(function(link) {
     link.addEventListener("click", function(event) {
-        // Prevent the default navigation
         event.preventDefault();
-        // Call our sign-out function instead
         handleSignOut();
     });
 });
@@ -135,7 +115,6 @@ if (sidebarOverlay) {
     });
 }
 
-// Mark notification as read when clicked
 notifItems.forEach(function(item) {
     item.addEventListener("click", function() {
         item.classList.remove("unread");
@@ -148,19 +127,16 @@ notifItems.forEach(function(item) {
 
 /* SECTION 5: MAIN LOGIC */
 function initDashboard() {
-    // Check if user is logged in
     const storedUser = localStorage.getItem("loggedInUser");
     if (!storedUser) {
-        // Not logged in - redirect to Login
         window.location.href = "Login.html";
         return;
     }
 
     updateUserInfo();
+    updateStatsFromData();
     animateCounters();
     highlightActiveLink();
-
-    console.log("Dashboard initialized for:", currentUser ? currentUser.name : "Unknown");
 }
 
 document.addEventListener("DOMContentLoaded", initDashboard);
