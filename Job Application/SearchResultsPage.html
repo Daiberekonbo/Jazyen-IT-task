@@ -11,11 +11,11 @@
 <body>
     <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme"></button>
     <a href="DashboardPage.html" class="back-arrow" title="back-arrow">
-        <i class="glyphicon glyphicon-arrow-left"></i>
+        <i class="fas fa-arrow-left"></i>
     </a>
 
     <nav>
-        <p class="logo"><span class="glyphicon glyphicon-briefcase"></span> JobPortal</p>
+        <p class="logo"><span class="fas fa-briefcase"></span> JobPortal</p>
         <ul>
             <li><a href="DashboardPage.html" class="nav-link">Dashboard</a></li>
             <li><a href="JobsListingPage.html" class="nav-link">Browse Jobs</a></li>
@@ -26,13 +26,13 @@
 
     <section id="search-results">
         <div class="search-header">
-            <h2>Search Results <span class="glyphicon glyphicon-search"></span></h2>
+            <h2>Search Results <span class="fas fa-search"></span></h2>
             <p>Find the perfect job for you.</p>
         </div>
 
         <!-- Search bar -->
         <div class="search-bar">
-            <span class="glyphicon glyphicon-search search-icon"></span>
+            <span class="fas fa-search search-icon"></span>
             <input type="text" id="searchInput" placeholder="Search jobs, companies, keywords..." />
             <button class="search-btn" id="searchBtn">Search</button>
         </div>
@@ -40,11 +40,11 @@
         <!-- Recent and suggested searches -->
         <div class="search-suggestions">
             <div class="suggestion-section">
-                <h4><span class="glyphicon glyphicon-time"></span> Recent Searches</h4>
+                <h4><span class="fas fa-clock"></span> Recent Searches</h4>
                 <div class="search-chips" id="recentSearches"></div>
             </div>
             <div class="suggestion-section">
-                <h4><span class="glyphicon glyphicon-flash"></span> Suggested Searches</h4>
+                <h4><span class="fas fa-bolt"></span> Suggested Searches</h4>
                 <div class="search-chips">
                     <span class="chip" data-search="Frontend Developer">Frontend Developer</span>
                     <span class="chip" data-search="React">React</span>
@@ -58,7 +58,7 @@
         <!-- Filters -->
         <div class="filters">
             <div class="filter-group">
-                <label for="location"><span class="glyphicon glyphicon-map-marker"></span> Location</label>
+                <label for="location"><span class="fas fa-map-marker-alt"></span> Location</label>
                 <select id="location">
                     <option>All Locations</option>
                     <option>Remote</option>
@@ -69,7 +69,7 @@
                 </select>
             </div>
             <div class="filter-group">
-                <label for="category"><span class="glyphicon glyphicon-list"></span> Category</label>
+                <label for="category"><span class="fas fa-list"></span> Category</label>
                 <select id="category">
                     <option>All Categories</option>
                     <option>Frontend</option>
@@ -80,7 +80,7 @@
                 </select>
             </div>
             <div class="filter-group">
-                <label for="experience"><span class="glyphicon glyphicon-education"></span> Experience</label>
+                <label for="experience"><span class="fas fa-graduation-cap"></span> Experience</label>
                 <select id="experience">
                     <option>Any Experience</option>
                     <option>Entry Level</option>
@@ -90,7 +90,7 @@
                 </select>
             </div>
             <div class="filter-group">
-                <label for="sortBy"><span class="glyphicon glyphicon-sort"></span> Sort By</label>
+                <label for="sortBy"><span class="fas fa-sort"></span> Sort By</label>
                 <select id="sortBy">
                     <option value="relevance">Relevance</option>
                     <option value="newest">Newest First</option>
@@ -110,7 +110,7 @@
 
         <!-- Empty state -->
         <div class="empty-state" id="emptyState" style="display: none;">
-            <span class="glyphicon glyphicon-search"></span>
+            <span class="fas fa-search"></span>
             <h3>No jobs found</h3>
             <p>Try adjusting your search terms or filters.</p>
         </div>
@@ -119,7 +119,7 @@
     <footer>
         <div class="footgrid">
             <div class="col">
-                <h4><span class="glyphicon glyphicon-briefcase"></span> JobPortal</h4>
+                <h4><span class="fas fa-briefcase"></span> JobPortal</h4>
                 <p style="font-size: 0.9rem; opacity: 0.75;">Connecting talent with opportunity since 2024.</p>
             </div>
             <div class="col">

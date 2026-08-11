@@ -10,6 +10,7 @@ const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword");
+const roleInputs = document.querySelectorAll('input[name="role"]');
 const nameError = document.getElementById("nameError");
 const emailError = document.getElementById("emailError");
 const passwordError = document.getElementById("passwordError");
@@ -190,6 +191,7 @@ registerForm.addEventListener("submit", function(event) {
     const phone = phoneInput.value;
     const password = passwordInput.value;
     const confirmPassword = confirmPasswordInput.value;
+    const role = Array.from(roleInputs).find(function(input) { return input.checked; })?.value || 'applicant';
 
     if (!validateName(fullName)) return;
     if (!validateEmail(email)) return;
@@ -209,6 +211,7 @@ registerForm.addEventListener("submit", function(event) {
                     name: fullName.trim(),
                     email: email.trim(),
                     phone: phone.trim(),
+                    role: role,
                     password: password
                 })
             });
@@ -229,7 +232,23 @@ registerForm.addEventListener("submit", function(event) {
         } catch (err) {
             setButtonLoading(false);
             isRegistering = false;
-            generalError.textContent = 'Network error, please try again.';
+
+            const localResult = registerUser({
+                name: fullName.trim(),
+                email: email.trim(),
+                phone: phone.trim(),
+                password: password,
+                role: role
+            });
+
+            if (localResult.success) {
+                successMessage.textContent = "Account created locally! Redirecting to Login...";
+                showElement(successMessage);
+                setTimeout(function() { window.location.href = "Login.html"; }, 1200);
+                return;
+            }
+
+            generalError.textContent = localResult.message || 'Network error, please try again.';
             showElement(generalError);
         }
     })();

@@ -142,7 +142,18 @@ loginForm.addEventListener("submit", function(event) {
         } catch (err) {
             setButtonLoading(false);
             isLoggingIn = false;
-            generalError.textContent = 'Network error, please try again.';
+
+            const fallback = validateLogin(email.trim(), password);
+            if (fallback.success) {
+                setCurrentUser(fallback.user);
+                localStorage.setItem("rememberMe", rememberMeCheckbox.checked ? "true" : "false");
+                successMessage.textContent = "Login successful! Redirecting to Dashboard...";
+                showElement(successMessage);
+                setTimeout(function() { window.location.href = "DashboardPage.html"; }, 900);
+                return;
+            }
+
+            generalError.textContent = fallback.message || 'Network error, please try again.';
             showElement(generalError);
         }
     })();
