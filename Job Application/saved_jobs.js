@@ -56,6 +56,12 @@ function createSavedCard(job) {
 
 // Gets the full job objects for all saved IDs
 function getSavedJobs() {
+    // Try to use backend jobs if available
+    if (window.fetchWithAuth) {
+        // We'll fetch on init and cache results; for now return empty and let init populate
+        return [];
+    }
+
     return fakeJobs.filter(function(job) {
         return savedJobIds.includes(job.id);
     });
@@ -199,9 +205,50 @@ function initSavedJobs() {
         return;
     }
 
-    // Render the saved jobs
-    renderSavedJobs();
-    console.log("Saved Jobs initialized with", savedJobIds.length, "saved jobs");
+    // If API available, fetch jobs and render saved ones
+    (async function() {
+        if (window.fetchWithAuth) {
+            try {
+                const resp = await fetchWithAuth('/api/jobs/');
+                if (resp && resp.ok) {
+                    const data = await resp.json();
+                    // Map to same shape as fakeJobs
+                    const allJobs = data.map(j => ({
+                        id: j._id || j.id,
+                        title: j.title || '',
+                        company: j.employer_id || '',
+                        logo: (j.employer_id || '').slice(0,2).toUpperCase(),
+                        location: j.location || '',
+                        salary: j.salary || '',
+                        type: j.type || '',
+                        posted: j.created_at || '',
+                        tags: j.tags || [],
+                        desc: j.description || ''
+                    }));
+
+                    // Filter for saved IDs
+                    const saved = allJobs.filter(job => savedJobIds.includes(String(job.id)));
+                    if (saved.length === 0) {
+                        savedGrid.innerHTML = "";
+                        savedGrid.style.display = "none";
+                        emptyState.style.display = "block";
+                        return;
+                    }
+
+                    savedGrid.style.display = "grid";
+                    emptyState.style.display = "none";
+                    savedGrid.innerHTML = saved.map(function(job) { return createSavedCard(job); }).join("");
+                    return;
+                }
+            } catch (err) {
+                console.warn('Failed to load jobs from API', err);
+            }
+        }
+
+        // Fallback
+        renderSavedJobs();
+        console.log("Saved Jobs initialized with", savedJobIds.length, "saved jobs");
+    })();
 }
 
 // Initialize when the DOM is fully loaded

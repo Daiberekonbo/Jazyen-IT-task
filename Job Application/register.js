@@ -199,30 +199,40 @@ registerForm.addEventListener("submit", function(event) {
     isRegistering = true;
     setButtonLoading(true);
 
-    setTimeout(function() {
-        // Use shared auth module
-        const result = registerUser({
-            name: fullName.trim(),
-            email: email.trim(),
-            phone: phone.trim(),
-            password: password
-        });
+    // Call backend API to register user
+    (async function() {
+        try {
+            const resp = await fetch('/api/users/register/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: fullName.trim(),
+                    email: email.trim(),
+                    phone: phone.trim(),
+                    password: password
+                })
+            });
 
-        setButtonLoading(false);
-        isRegistering = false;
+            setButtonLoading(false);
+            isRegistering = false;
 
-        if (result.success) {
-            successMessage.textContent = "Account created successfully! Redirecting to Login...";
-            showElement(successMessage);
+            if (resp.status === 201) {
+                successMessage.textContent = "Account created successfully! Redirecting to Login...";
+                showElement(successMessage);
+                setTimeout(function() { window.location.href = "Login.html"; }, 1200);
+                return;
+            }
 
-            setTimeout(function() {
-                window.location.href = "Login.html";
-            }, 1500);
-        } else {
-            generalError.textContent = result.message;
+            const data = await resp.json();
+            generalError.textContent = data.error || data.message || 'Registration failed';
+            showElement(generalError);
+        } catch (err) {
+            setButtonLoading(false);
+            isRegistering = false;
+            generalError.textContent = 'Network error, please try again.';
             showElement(generalError);
         }
-    }, 1000);
+    })();
 });
 
 /* Password toggle */

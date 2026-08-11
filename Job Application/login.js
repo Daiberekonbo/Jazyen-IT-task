@@ -111,31 +111,41 @@ loginForm.addEventListener("submit", function(event) {
     isLoggingIn = true;
     setButtonLoading(true);
 
-    // Use shared auth module to validate
-    setTimeout(function() {
-        const result = validateLogin(email, password);
+    (async function() {
+        try {
+            const resp = await fetch('/api/users/login/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email.trim(), password: password })
+            });
 
-        if (result.success) {
+            const data = await resp.json();
             setButtonLoading(false);
             isLoggingIn = false;
 
-            setCurrentUser(result.user);
-            localStorage.setItem("rememberMe", rememberMeCheckbox.checked ? "true" : "false");
+            if (resp.status === 200) {
+                // store tokens and user info returned from server
+                const userObj = data.user ? { ...data.user, access: data.access, refresh: data.refresh } : { email: email.trim(), access: data.access, refresh: data.refresh };
+                setCurrentUser(userObj);
+                localStorage.setItem("rememberMe", rememberMeCheckbox.checked ? "true" : "false");
+                if (window.setAuthTokens) setAuthTokens({ access: data.access, refresh: data.refresh });
 
-            successMessage.textContent = "Login successful! Redirecting to Dashboard...";
-            showElement(successMessage);
+                successMessage.textContent = "Login successful! Redirecting to Dashboard...";
+                showElement(successMessage);
 
-            setTimeout(function() {
-                window.location.href = "DashboardPage.html";
-            }, 1200);
-        } else {
+                setTimeout(function() { window.location.href = "DashboardPage.html"; }, 900);
+                return;
+            }
+
+            generalError.textContent = data.error || data.detail || 'Invalid credentials';
+            showElement(generalError);
+        } catch (err) {
             setButtonLoading(false);
             isLoggingIn = false;
-
-            generalError.textContent = result.message;
+            generalError.textContent = 'Network error, please try again.';
             showElement(generalError);
         }
-    }, 1000);
+    })();
 });
 
 /* Email input - live validation */

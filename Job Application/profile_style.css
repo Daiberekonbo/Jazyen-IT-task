@@ -1,119 +1,13 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
-
-.back-arrow {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-size: 24px;
-    color: #fff;
-    background-color: #2e7d32;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    z-index: 1001;
-}
-
-.back-arrow:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    background-color: #1b5e20;
-    text-decoration: none;
-    color: #fff;
-}
-
-.back-arrow:focus {
-    outline: 2px solid #fff;
-    outline-offset: 2px;
-}
+/* Shared reset, navigation and back-arrow styles are provided by design_system.css */
 
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 50%, #a5d6a7 100%);
-    min-height: 100vh;
     color: #fff;
-    line-height: 1.6;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    padding: 2% 5%;
-    background: rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
-
-nav .logo {
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-nav ul {
-    display: flex;
-    list-style-type: none;
-    align-items: center;
-    gap: 8px;
-}
-
-nav ul .nav-link {
-    color: #fff;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 8px 14px;
-    transition: all 0.3s ease;
-    border-radius: 50px;
-}
-
-nav ul .nav-link:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-nav .nav-btn {
-    padding: 5px 15px;
-    border: 2px solid #fff;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 12px;
-    transition: all 0.3s ease;
-    color: #fff;
-}
-
-nav .nav-btn:hover {
-    background: #fff;
-    color: #2e7d32;
 }
 
 .edit-checkbox {
     display: none;
 }
-
 #profile {
     padding: 100px 5% 40px;
     max-width: 900px;
@@ -432,31 +326,9 @@ footer {
 
 @media (max-width: 900px) {
     /* Hide the back-arrow on mobile so it doesn't block the nav */
-    .back-arrow {
-        display: none;
-    }
 
     nav {
         padding: 3% 4%;
-    }
-
-    nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(46, 125, 50, 0.95);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
-        padding: 1.5rem;
-        gap: 1.2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    nav ul.active {
-        display: flex;
     }
 
     .profile-pic-section {

@@ -99,14 +99,32 @@ function saveProfileData() {
         education: editEdu.value
     };
 
-    // Use shared auth module to update
-    const result = updateUserProfile(updatedData);
-    if (result.success) {
-        // Also save profileData for backward compat
-        localStorage.setItem("profileData", JSON.stringify(updatedData));
-        profileData = getProfileData();
-        updateDisplay();
-    }
+    // Try to update on backend
+    (async function() {
+        try {
+            const resp = await (window.fetchWithAuth ? fetchWithAuth('/api/users/me/', { method: 'PATCH', body: JSON.stringify(updatedData) }) : fetch('/api/users/me/', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(updatedData) }));
+            if (resp && resp.ok) {
+                const data = await resp.json();
+                // Update local stored user and profileData for backward compat
+                const userObj = { id: data.id, email: data.email, name: data.name, phone: data.phone, bio: data.bio, skills: data.skills, experience: data.experience, education: data.education };
+                setCurrentUser({ ...getCurrentUser(), ...userObj });
+                localStorage.setItem("profileData", JSON.stringify(userObj));
+                profileData = getProfileData();
+                updateDisplay();
+                return;
+            }
+        } catch (err) {
+            console.warn('Profile update failed, falling back to local save', err);
+        }
+
+        // Fallback to client-side update
+        const result = updateUserProfile(updatedData);
+        if (result.success) {
+            localStorage.setItem("profileData", JSON.stringify(updatedData));
+            profileData = getProfileData();
+            updateDisplay();
+        }
+    })();
 }
 
 function toggleEditMode() {

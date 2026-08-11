@@ -37,22 +37,54 @@ function animateCounters() {
 }
 
 function updateUserInfo() {
-    const storedUser = localStorage.getItem("loggedInUser");
+    // Prefer server-side current user info
+    (async function() {
+        try {
+            const resp = await (window.fetchWithAuth ? fetchWithAuth('/api/users/me/') : fetch('/api/users/me/'));
+            if (resp && resp.ok) {
+                const data = await resp.json();
+                currentUser = data;
+                setCurrentUser({ ...getCurrentUser(), ...data });
+                if (currentUser.name) {
+                    const firstName = currentUser.name.split(" ")[0];
+                    welcomeHeading.innerHTML = 'Welcome back, ' + firstName + '! <span class="wave">👋</span>';
+                    sidebarName.textContent = currentUser.name;
+                    sidebarAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+                }
+                if (currentUser.email) sidebarEmail.textContent = currentUser.email;
 
-    if (storedUser) {
-        currentUser = JSON.parse(storedUser);
+                // fetch applied jobs count from API
+                try {
+                    const applicantId = currentUser.id || currentUser.email;
+                    const appsResp = await (window.fetchWithAuth ? fetchWithAuth('/api/applications/?applicant_id=' + encodeURIComponent(applicantId)) : fetch('/api/applications/?applicant_id=' + encodeURIComponent(applicantId)));
+                    if (appsResp && appsResp.ok) {
+                        const apps = await appsResp.json();
+                        const appliedStat = document.querySelector('.stat-card .stat-icon.applied').parentElement.querySelector('.stat-num');
+                        if (appliedStat) appliedStat.setAttribute('data-target', apps.length);
+                    }
+                } catch (err) {
+                    console.warn('Failed to load applied jobs count', err);
+                }
 
-        if (currentUser.name) {
-            const firstName = currentUser.name.split(" ")[0];
-            welcomeHeading.innerHTML = 'Welcome back, ' + firstName + '! <span class="wave">👋</span>';
-            sidebarName.textContent = currentUser.name;
-            sidebarAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+                return;
+            }
+        } catch (err) {
+            console.warn('Failed to fetch current user', err);
         }
 
-        if (currentUser.email) {
-            sidebarEmail.textContent = currentUser.email;
+        // Fallback to localStorage
+        const storedUser = localStorage.getItem("loggedInUser");
+        if (storedUser) {
+            currentUser = JSON.parse(storedUser);
+            if (currentUser.name) {
+                const firstName = currentUser.name.split(" ")[0];
+                welcomeHeading.innerHTML = 'Welcome back, ' + firstName + '! <span class="wave">👋</span>';
+                sidebarName.textContent = currentUser.name;
+                sidebarAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+            }
+            if (currentUser.email) sidebarEmail.textContent = currentUser.email;
         }
-    }
+    })();
 }
 
 function updateStatsFromData() {

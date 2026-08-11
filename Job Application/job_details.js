@@ -32,11 +32,37 @@ function loadJobDetails() {
     const urlParams = new URLSearchParams(window.location.search);
     const jobId = parseInt(urlParams.get("id")) || 1;
 
-    // Find the job in our fake data
-    currentJob = fakeJobs.find(j => j.id === jobId);
+    // Try to fetch jobs from API and find the job by id (string or number)
+    const idParam = urlParams.get("id");
+    const idStr = idParam ? String(idParam) : String(jobId);
+    currentJob = null;
+    if (window.fetchWithAuth) {
+        try {
+            const resp = await fetchWithAuth('/api/jobs/');
+            if (resp.ok) {
+                const data = await resp.json();
+                const found = data.find(j => String(j._id || j.id) === idStr);
+                if (found) {
+                    currentJob = {
+                        id: found._id || found.id,
+                        title: found.title || 'Untitled',
+                        company: found.employer_id || 'Company',
+                        logo: (found.employer_id || 'CP').slice(0,2).toUpperCase(),
+                        location: found.location || 'Remote',
+                        salary: found.salary || 'Not specified',
+                        type: found.type || 'Full Time',
+                        posted: found.created_at || ''
+                    };
+                }
+            }
+        } catch (err) {
+            console.warn('Failed to load job from API', err);
+        }
+    }
 
+    // Fallback to fake data if API didn't provide the job
     if (!currentJob) {
-        currentJob = fakeJobs[0];
+        currentJob = fakeJobs.find(j => String(j.id) === idStr) || fakeJobs[0];
     }
 
     // Update the page with job details
@@ -97,36 +123,38 @@ applyBtn.addEventListener("click", function(e) {
 
     if (!currentJob) return;
 
-    // Check if already applied
-    let applications = JSON.parse(localStorage.getItem("myApplications")) || [];
-    const alreadyApplied = applications.some(app => app.jobId === currentJob.id);
+    // Use backend POST /api/applications/ when available
+    (async function() {
+        const storedUser = getCurrentUser();
+        if (!storedUser) {
+            window.location.href = "Login.html";
+            return;
+        }
 
-    if (alreadyApplied) {
-        alert("You have already applied for this position.");
-        return;
-    }
+        const applicantId = storedUser.id || storedUser.email || null;
+        if (!applicantId) {
+            alert('Unable to determine applicant id.');
+            return;
+        }
 
-    // Simulate applying
-    // LATER BACKEND: POST /api/applications with { jobId, userId }
-    const application = {
-        id: Date.now(),
-        jobId: currentJob.id,
-        title: currentJob.title,
-        company: currentJob.company,
-        logo: currentJob.logo,
-        location: currentJob.location,
-        status: "Pending",
-        appliedDate: new Date().toLocaleDateString()
-    };
+        try {
+            const resp = await (window.fetchWithAuth ? fetchWithAuth('/api/applications/', { method: 'POST', body: JSON.stringify({ job_id: String(currentJob.id), applicant_id: String(applicantId), resume_url: '' }) }) : fetch('/api/applications/', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ job_id: String(currentJob.id), applicant_id: String(applicantId), resume_url: '' }) }));
 
-    applications.push(application);
-    localStorage.setItem("myApplications", JSON.stringify(applications));
+            if (resp && (resp.status === 201 || resp.ok)) {
+                applyBtn.textContent = "Applied!";
+                applyBtn.style.backgroundColor = "#28a745";
+                applyBtn.style.borderColor = "#28a745";
+                applyBtn.style.color = "#fff";
+                applyBtn.style.pointerEvents = "none";
+                return;
+            }
 
-    applyBtn.textContent = "Applied!";
-    applyBtn.style.backgroundColor = "#28a745";
-    applyBtn.style.borderColor = "#28a745";
-    applyBtn.style.color = "#fff";
-    applyBtn.style.pointerEvents = "none";
+            const data = await resp.json();
+            alert(data.error || data.detail || 'Failed to apply.');
+        } catch (err) {
+            alert('Network error while applying.');
+        }
+    })();
 });
 
 /* SECTION 5: MAIN LOGIC */

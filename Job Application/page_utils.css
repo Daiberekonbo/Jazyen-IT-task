@@ -1,0 +1,198 @@
+/* ============================================================
+   SHARED PAGE UTILITIES
+   Reusable cards, headers, form rows, and layout components
+   ============================================================ */
+
+.page-header {
+    padding: 24px 0;
+}
+
+.page-header h2,
+.page-header h3 {
+    margin: 0;
+    color: var(--dark-text);
+    font-size: var(--font-2xl);
+    line-height: 1.1;
+}
+
+.page-header p {
+    margin-top: 12px;
+    color: var(--gray-text);
+    font-size: var(--font-base);
+    max-width: 720px;
+}
+
+.card-panel {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-light);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.card-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.panel-body {
+    padding: 24px;
+}
+
+.panel-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.panel-col {
+    flex: 1;
+    min-width: 260px;
+}
+
+.panel-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.field-group {
+    margin-bottom: 18px;
+}
+
+.field-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.panel-input,
+.panel-select,
+.panel-textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    color: var(--dark-text);
+    font-size: var(--font-base);
+    transition: var(--transition);
+}
+
+.panel-input:focus,
+.panel-select:focus,
+.panel-textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(22,163,74,0.1);
+    outline: none;
+}
+
+.badge-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: var(--font-sm);
+    font-weight: 700;
+}
+
+.badge-pill--success { background: var(--success-bg); color: var(--success); }
+.badge-pill--warning { background: var(--warning-bg); color: var(--warning); }
+.badge-pill--danger { background: var(--danger-bg); color: var(--danger); }
+.badge-pill--info { background: var(--info-bg); color: var(--info); }
+
+.grid-cols {
+    display: grid;
+    gap: 18px;
+}
+
+.grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+@media (max-width: 880px) {
+    .grid-cols-2,
+    .grid-cols-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* SECTION 20: Page layout utilities */
+.page-container {
+    padding: 100px 5% 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1,
+.page-header h2,
+.page-header h3 {
+    margin: 0;
+    color: var(--dark-text);
+    font-size: clamp(1.75rem, 2.25vw, 2.75rem);
+    line-height: 1.05;
+}
+
+.page-header p {
+    margin-top: 10px;
+    color: var(--gray-text);
+    font-size: var(--font-base);
+    max-width: 720px;
+}
+
+.page-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.page-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.page-card--alt {
+    background: var(--gray-bg);
+}
+
+.footer-shell {
+    padding: 40px 5%;
+    background: var(--white);
+    border-top: 1px solid var(--gray-light);
+    color: var(--gray-text);
+}
+
+.footer-shell .footgrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+}
+
+.footer-shell h4 {
+    margin-bottom: 12px;
+    color: var(--dark-text);
+}
+
+.footer-shell a {
+    color: var(--gray-text);
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 16px 4%;
+    }
+    .page-container {
+        padding-top: 90px;
+    }
+}

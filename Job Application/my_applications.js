@@ -121,16 +121,45 @@ function initMyApplications() {
         return;
     }
 
-    // Load applications from localStorage using the SAME key as application_success.js
-    const storedApps = localStorage.getItem("appliedJobs");
-    if (storedApps) {
-        applications = JSON.parse(storedApps);
-    } else {
-        applications = [];
-    }
+    // Try to fetch applications for the current user from backend
+    (async function() {
+        const user = getCurrentUser();
+        if (!user) return;
+        const applicantId = user.id || user.email;
 
-    renderApplications("all");
-    updateCounts();
+        try {
+            const resp = await (window.fetchWithAuth ? fetchWithAuth('/api/applications/?applicant_id=' + encodeURIComponent(applicantId)) : fetch('/api/applications/?applicant_id=' + encodeURIComponent(applicantId)));
+            if (resp && resp.ok) {
+                const data = await resp.json();
+                // Map backend application objects to the UI shape
+                applications = data.map(a => ({
+                    id: a._id || a.id,
+                    title: a.title || a.job_title || '',
+                    company: a.company || '',
+                    logo: (a.company || '').slice(0,2).toUpperCase(),
+                    location: a.location || '',
+                    salary: a.salary || '',
+                    status: (a.status || 'pending').charAt(0).toUpperCase() + (a.status || 'pending').slice(1),
+                    appliedDate: a.applied_at || a.appliedDate || ''
+                }));
+                renderApplications("all");
+                updateCounts();
+                return;
+            }
+        } catch (err) {
+            console.warn('Failed to fetch applications from API', err);
+        }
+
+        // Fallback to localStorage
+        const storedApps = localStorage.getItem("appliedJobs");
+        if (storedApps) {
+            applications = JSON.parse(storedApps);
+        } else {
+            applications = [];
+        }
+        renderApplications("all");
+        updateCounts();
+    })();
 }
 
 document.addEventListener("DOMContentLoaded", initMyApplications);

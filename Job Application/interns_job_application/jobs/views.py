@@ -2,10 +2,11 @@ from django.shortcuts import render
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from db import jobs_collection, applications_collection
+from db import jobs_collection, applications_collection, conversations_collection
 from bson import ObjectId
 from bson.errors import InvalidId
 from datetime import datetime
+from rest_framework_simplejwt.tokens import AccessToken
 
 
 @api_view(['GET', 'POST'])
@@ -48,13 +49,25 @@ def application_list_create(request):
 
     # POST
     data = request.data
+    job_id = data.get("job_id")
+    applicant_id = data.get("applicant_id")
+
+    if not job_id or not applicant_id:
+        return Response({"error": "job_id and applicant_id are required"}, status=400)
+
+    # Prevent duplicate applications for the same job by the same applicant
+    existing = applications_collection.find_one({"job_id": str(job_id), "applicant_id": str(applicant_id)})
+    if existing:
+        return Response({"error": "You have already applied for this job"}, status=400)
+
     application = {
-        "job_id": data.get("job_id"),
-        "applicant_id": data.get("applicant_id"),
+        "job_id": str(job_id),
+        "applicant_id": str(applicant_id),
         "resume_url": data.get("resume_url"),
         "status": "pending",
         "applied_at": datetime.utcnow()
     }
+
     result = applications_collection.insert_one(application)
     return Response({"id": str(result.inserted_id)}, status=201)
 
@@ -80,3 +93,79 @@ def application_update_status(request, application_id):
         return Response({"error": "Application not found"}, status=404)
 
     return Response({"message": "Status updated"})
+
+
+@api_view(['GET', 'POST'])
+def conversations_list_create(request):
+    if request.method == 'GET':
+        convs = list(conversations_collection.find())
+        for c in convs:
+            c['_id'] = str(c['_id'])
+        return Response(convs)
+
+    # POST - create a new conversation
+    data = request.data
+    conv = {
+        'name': data.get('name'),
+        'avatar': data.get('avatar', ''),
+        'online': data.get('online', False),
+        'unread': int(data.get('unread', 0)),
+        'messages': data.get('messages', []),
+        'created_at': datetime.utcnow()
+    }
+    result = conversations_collection.insert_one(conv)
+    return Response({'id': str(result.inserted_id)}, status=201)
+
+
+@api_view(['GET'])
+def conversation_detail(request, conv_id):
+    # try ObjectId first
+    try:
+        obj_id = ObjectId(conv_id)
+        conv = conversations_collection.find_one({'_id': obj_id})
+    except Exception:
+        conv = conversations_collection.find_one({'_id': conv_id})
+
+    if not conv:
+        return Response({'error': 'Conversation not found'}, status=404)
+
+    conv['_id'] = str(conv['_id'])
+    return Response(conv)
+
+
+@api_view(['POST'])
+def conversation_post_message(request, conv_id):
+    # Authenticate sender via token if provided
+    sender = None
+    auth = request.META.get('HTTP_AUTHORIZATION', '')
+    if auth.startswith('Bearer '):
+        token = auth.split()[1]
+        try:
+            at = AccessToken(token)
+            sender = at.get('user_id')
+        except Exception:
+            sender = None
+
+    text = request.data.get('text')
+    if not text:
+        return Response({'error': 'Message text required'}, status=400)
+
+    # find conversation
+    try:
+        obj_id = ObjectId(conv_id)
+        conv = conversations_collection.find_one({'_id': obj_id})
+    except Exception:
+        conv = conversations_collection.find_one({'_id': conv_id})
+
+    if not conv:
+        return Response({'error': 'Conversation not found'}, status=404)
+
+    msg = {
+        'text': text,
+        'sent_by': sender or request.data.get('sent_by', 'anonymous'),
+        'time': datetime.utcnow().isoformat()
+    }
+
+    conversations_collection.update_one({'_id': conv['_id']}, {'$push': {'messages': msg}, '$inc': {'unread': 1}})
+
+    return Response({'message': 'sent'}, status=201)

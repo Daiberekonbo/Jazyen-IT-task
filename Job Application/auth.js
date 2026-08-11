@@ -197,6 +197,13 @@ document.addEventListener("DOMContentLoaded", function() {
         document.body.classList.add("dark-mode");
     }
 
+    // Apply global theme stored by theme.js/localStorage for pages that include only auth.js
+    try {
+        const storedTheme = localStorage.getItem('theme');
+        if (storedTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+        else document.documentElement.removeAttribute('data-theme');
+    } catch(e) {}
+
     // Attach logout handlers to all logout links
     document.querySelectorAll('[data-logout]').forEach(function(link) {
         link.addEventListener("click", function(e) {
@@ -205,3 +212,79 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+/* --- Helper: token management and authenticated fetch --- */
+
+// Store auth tokens inside the loggedInUser object (merges with existing user fields)
+function setAuthTokens(tokens) {
+    const user = getCurrentUser() || {};
+    const merged = {
+        ...user,
+        access: tokens.access || user.access,
+        refresh: tokens.refresh || user.refresh
+    };
+    setCurrentUser(merged);
+}
+
+function getAccessToken() {
+    const user = getCurrentUser();
+    return user && user.access ? user.access : null;
+}
+
+// Try to refresh access token using refresh token
+async function refreshAccessToken() {
+    const user = getCurrentUser();
+    if (!user || !user.refresh) return false;
+    try {
+        const resp = await fetch('/api/token/refresh/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ refresh: user.refresh })
+        });
+        if (!resp.ok) {
+            return false;
+        }
+        const data = await resp.json();
+        if (data.access) {
+            // update refresh token if rotation returned a new one
+            const newRefresh = data.refresh || user.refresh;
+            setAuthTokens({ access: data.access, refresh: newRefresh });
+            return true;
+        }
+        return false;
+    } catch (err) {
+        return false;
+    }
+}
+
+// Small fetch wrapper that adds Authorization header when an access token exists
+// If a request returns 401, attempt to refresh the access token once and retry.
+async function fetchWithAuth(url, options) {
+    const headers = (options && options.headers) ? { ...options.headers } : { 'Content-Type': 'application/json' };
+    const token = getAccessToken();
+    if (token) headers['Authorization'] = 'Bearer ' + token;
+    let opts = { ...(options || {}), headers };
+
+    let resp = await fetch(url, opts);
+    if (resp.status !== 401) return resp;
+
+    // attempt refresh
+    const refreshed = await refreshAccessToken();
+    if (!refreshed) {
+        // refresh failed — log out to clear state
+        logout();
+        return resp;
+    }
+
+    // retry request with new access token
+    const newToken = getAccessToken();
+    if (newToken) {
+        opts = { ...(options || {}), headers: { ...(opts.headers || {}), Authorization: 'Bearer ' + newToken } };
+    }
+    return fetch(url, opts);
+}
+
+// Export helpers to global scope for simple usage in the static frontend
+window.setAuthTokens = setAuthTokens;
+window.getAccessToken = getAccessToken;
+window.fetchWithAuth = fetchWithAuth;

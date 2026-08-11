@@ -20,114 +20,14 @@ body.dark-mode {
 }
 
 /* SECTION 2: Global styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-}
+/* Shared reset, navigation and back-arrow styles are provided by design_system.css */
 
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
     background: var(--bg-gradient);
     min-height: 100vh;
     color: var(--text-color);
     line-height: 1.6;
     transition: background 0.3s ease, color 0.3s ease;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* SECTION 3: Back arrow */
-.back-arrow {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-size: 24px;
-    color: #fff;
-    background-color: #2e7d32;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    z-index: 1001;
-}
-
-.back-arrow:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    background-color: #1b5e20;
-    text-decoration: none;
-    color: #fff;
-}
-
-/* SECTION 4: Navigation */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    padding: 2% 5%;
-    background: rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
-
-nav .logo {
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-nav ul {
-    display: flex;
-    list-style-type: none;
-    align-items: center;
-    gap: 8px;
-}
-
-nav ul .nav-link {
-    color: #fff;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 8px 14px;
-    transition: all 0.3s ease;
-    border-radius: 50px;
-}
-
-nav ul .nav-link:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-nav .nav-btn {
-    padding: 5px 15px;
-    border: 2px solid #fff;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 12px;
-    transition: all 0.3s ease;
-    color: #fff;
-}
-
-nav .nav-btn:hover {
-    background: #fff;
-    color: #2e7d32;
 }
 
 /* SECTION 5: Main content */
@@ -398,10 +298,6 @@ footer {
 
 /* SECTION 12: Responsive */
 @media (max-width: 900px) {
-    .back-arrow {
-        display: none;
-    }
-
     #settings {
         padding-top: 80px;
     }

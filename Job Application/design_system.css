@@ -555,3 +555,153 @@ h4 { font-size: var(--font-base); }
         font-size: var(--font-sm);
     }
 }
+
+@media (max-width: 900px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.95);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid rgba(15,23,42,0.08);
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .back-arrow {
+        display: none;
+    }
+}
+
+/* SECTION 18: Page layout utilities */
+.page-container {
+    padding: 100px 5% 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    margin-bottom: 30px;
+}
+
+.section-header h2,
+.section-header h3 {
+    font-size: var(--font-2xl);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--dark-text);
+}
+
+.section-header p {
+    color: var(--gray-text);
+    font-size: var(--font-base);
+    margin-top: 8px;
+}
+
+.page-card {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.page-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.page-panel {
+    background: var(--white);
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.page-panel--soft {
+    background: var(--gray-bg);
+    border-color: transparent;
+}
+
+.page-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.page-toolbar .btn {
+    min-width: 140px;
+}
+
+/* DARK THEME: toggle by setting attribute `data-theme="dark"` on the <html> element */
+html[data-theme="dark"] {
+    --primary: #16A34A;
+    --primary-hover: #15803D;
+    --primary-light: #064e2b;
+    --primary-bg: #052014;
+    --secondary: #F97316;
+    --secondary-hover: #EA580C;
+    --secondary-bg: #2b1206;
+
+    --white: #0b1220; /* card background in dark mode */
+    --light-bg: #071022; /* page background */
+    --dark-text: #E6F6EB;
+    --gray-text: #9CA3AF;
+    --gray-light: #1f2937;
+    --gray-bg: #0f1724;
+
+    --success: #16A34A;
+    --success-bg: rgba(22,163,74,0.08);
+    --warning: #F97316;
+    --warning-bg: rgba(249,115,22,0.06);
+    --danger: #FCA5A5;
+    --danger-bg: rgba(220,38,38,0.06);
+    --info: #60A5FA;
+    --info-bg: rgba(96,165,250,0.06);
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.6);
+    --shadow-md: 0 6px 14px rgba(0,0,0,0.6);
+    --shadow-lg: 0 14px 30px rgba(0,0,0,0.65);
+    --shadow-primary: 0 6px 20px rgba(22,163,74,0.12);
+    --shadow-secondary: 0 6px 20px rgba(249,115,22,0.08);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--white);
+    color: var(--dark-text);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-light);
+    z-index: 1200;
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+html[data-theme="dark"] .theme-toggle {
+    background: var(--gray-bg);
+    color: var(--gray-text);
+    border-color: transparent;
+}

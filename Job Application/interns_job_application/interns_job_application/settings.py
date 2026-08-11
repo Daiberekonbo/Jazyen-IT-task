@@ -26,9 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'jobs',
     'users',
 ]
+
+# Optional: token blacklist app (not required unless BLACKLIST_AFTER_ROTATION=True)
+# 'rest_framework_simplejwt.token_blacklist',
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -91,4 +95,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    # Rotate refresh tokens on use and return a new refresh token from /token/refresh/
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
 }

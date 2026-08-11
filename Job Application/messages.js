@@ -259,8 +259,27 @@ function initMessages() {
         return;
     }
 
-    renderConversations();
-    console.log("Messages initialized with", conversations.length, "conversations");
+    // Try to fetch conversations from backend if available
+    (async function() {
+        try {
+            if (window.fetchWithAuth) {
+                const resp = await fetchWithAuth('/api/conversations/');
+                if (resp && resp.ok) {
+                    const data = await resp.json();
+                    // Expect backend shape similar to defaultConversations
+                    conversations = data;
+                    renderConversations();
+                    console.log("Messages initialized with", conversations.length, "conversations from API");
+                    return;
+                }
+            }
+        } catch (err) {
+            console.warn('Failed to load conversations from API, using local data', err);
+        }
+
+        renderConversations();
+        console.log("Messages initialized with", conversations.length, "conversations");
+    })();
 }
 
 // Initialize when the DOM is fully loaded

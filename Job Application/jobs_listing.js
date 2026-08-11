@@ -14,27 +14,15 @@ const resultsInfo = document.querySelector(".results-info span");
 const paginationContainer = document.querySelector(".pagination");
 
 /* SECTION 2: VARIABLES */
-// LATER BACKEND: This will be fetched from GET /api/jobs
-const fakeJobs = [
-    { id: 1, title: "Frontend Developer", company: "Facebook", logo: "FB", location: "Remote", salary: "$80k - $120k", type: "Full Time", category: "Frontend", experience: "Mid Level", posted: "2d ago", tags: ["React", "TypeScript", "CSS"], desc: "Build and maintain modern web applications using React, TypeScript, and CSS." },
-    { id: 2, title: "Backend Engineer", company: "Google", logo: "GG", location: "Mountain View", salary: "$120k - $160k", type: "Full Time", category: "Backend", experience: "Senior", posted: "1d ago", tags: ["Go", "Python", "Kubernetes"], desc: "Design and implement scalable backend services." },
-    { id: 3, title: "UI/UX Designer", company: "Apple", logo: "AP", location: "Cupertino", salary: "$90k - $130k", type: "Contract", category: "Design", experience: "Mid Level", posted: "3d ago", tags: ["Figma", "Prototyping", "Design Systems"], desc: "Create intuitive user interfaces for millions of users." },
-    { id: 4, title: "Full Stack Developer", company: "Amazon", logo: "AM", location: "Seattle", salary: "$100k - $140k", type: "Full Time", category: "Full Stack", experience: "Senior", posted: "5d ago", tags: ["Java", "React", "AWS"], desc: "Develop end-to-end features for e-commerce platform." },
-    { id: 5, title: "DevOps Engineer", company: "Salesforce", logo: "SF", location: "San Francisco", salary: "$110k - $150k", type: "Full Time", category: "DevOps", experience: "Senior", posted: "1w ago", tags: ["Docker", "Terraform", "CI/CD"], desc: "Manage CI/CD pipelines and cloud infrastructure." },
-    { id: 6, title: "Data Analyst", company: "Spotify", logo: "SP", location: "Remote", salary: "$60k - $80k", type: "Part Time", category: "Backend", experience: "Entry Level", posted: "4d ago", tags: ["SQL", "Python", "Tableau"], desc: "Analyze user behavior data to drive product decisions." },
-    { id: 7, title: "React Developer", company: "Netflix", logo: "NF", location: "Remote", salary: "$130k - $170k", type: "Full Time", category: "Frontend", experience: "Senior", posted: "1d ago", tags: ["React", "Redux", "GraphQL"], desc: "Build streaming UI components used by millions." },
-    { id: 8, title: "Junior Developer", company: "Microsoft", logo: "MS", location: "New York", salary: "$40k - $60k", type: "Full Time", category: "Frontend", experience: "Entry Level", posted: "1w ago", tags: ["HTML", "CSS", "JavaScript"], desc: "Learn and grow with our experienced team." },
-    { id: 9, title: "DevOps Intern", company: "Oracle", logo: "OR", location: "London", salary: "$40k - $60k", type: "Internship", category: "DevOps", experience: "Entry Level", posted: "2d ago", tags: ["Linux", "Docker", "Bash"], desc: "Assist with infrastructure automation and monitoring." }
-];
-
 let currentPage = 1;
 const jobsPerPage = 6;
-let filteredJobs = [...fakeJobs];
+let filteredJobs = [];
+let jobsFromApi = [];
 let savedJobs = JSON.parse(localStorage.getItem("savedJobs")) || [];
 
 /* SECTION 3: HELPER FUNCTIONS */
 function createJobCard(job) {
-    const isSaved = savedJobs.includes(job.id);
+    const isSaved = savedJobs.includes(String(job.id));
 
     return `
         <div class="job-card" data-id="${job.id}">
@@ -128,9 +116,10 @@ function attachCardClickListeners() {
 }
 
 function toggleSaveJob(jobId) {
-    const index = savedJobs.indexOf(jobId);
+    const idStr = String(jobId);
+    const index = savedJobs.indexOf(idStr);
     if (index === -1) {
-        savedJobs.push(jobId);
+        savedJobs.push(idStr);
     } else {
         savedJobs.splice(index, 1);
     }
@@ -219,8 +208,40 @@ function initJobsListing() {
         return;
     }
 
-    renderJobs();
-    console.log("Job Listings initialized with", fakeJobs.length, "fake jobs");
+    // Fetch jobs from backend API and render
+    (async function() {
+        try {
+            const resp = await (window.fetchWithAuth ? fetchWithAuth('/api/jobs/') : fetch('/api/jobs/'));
+            if (resp && resp.ok) {
+                const data = await resp.json();
+                // map backend jobs to display-friendly objects
+                jobsFromApi = data.map(j => ({
+                    id: j._id || j.id,
+                    title: j.title || j.job_title || 'Untitled',
+                    company: j.employer_id || 'Company',
+                    logo: (j.employer_id && j.employer_id.slice(0,2).toUpperCase()) || 'CP',
+                    location: j.location || 'Remote',
+                    salary: j.salary || 'Not specified',
+                    type: j.type || 'Full Time',
+                    category: j.category || 'General',
+                    experience: j.experience || 'Any',
+                    posted: j.created_at ? new Date(j.created_at).toLocaleDateString() : 'Recently',
+                    tags: j.tags || [],
+                    desc: j.description || ''
+                }));
+                filteredJobs = [...jobsFromApi];
+                renderJobs();
+                console.log("Job Listings initialized with", jobsFromApi.length, "jobs from API");
+                return;
+            }
+        } catch (err) {
+            console.warn('Failed to load jobs from API, falling back to client sample data', err);
+        }
+
+        // fallback: display empty state
+        filteredJobs = [];
+        renderJobs();
+    })();
 }
 
 document.addEventListener("DOMContentLoaded", initJobsListing);
