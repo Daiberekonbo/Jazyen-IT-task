@@ -1,0 +1,7 @@
+from rest_framework import serializers
+from .models import Job  # Replace with your actual model
+
+class JobSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Job
+        fields = '__all__'  # Exposes all fields in JSON
