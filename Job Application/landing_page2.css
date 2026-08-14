@@ -1,8 +1,35 @@
 /* Shared reset and navigation styles are provided by design_system.css */
 
 body {
-    background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 50%, #a5d6a7 100%);
-    color: #fff;
+    background: linear-gradient(135deg, #eafaf0 0%, #dff7e4 36%, #eef8ff 100%);
+    color: #0f172a;
+}
+
+html[data-theme="dark"] body,
+body.dark-mode {
+    background: linear-gradient(135deg, #071022 0%, #0d1b3d 38%, #220f3a 100%);
+    color: #e5f6ff;
+}
+
+html[data-theme="dark"] .fcard,
+html[data-theme="dark"] .tcard,
+body.dark-mode .fcard,
+body.dark-mode .tcard {
+    background: rgba(15, 23, 36, 0.88);
+    border-color: rgba(148, 163, 184, 0.28);
+    color: #f8fafc;
+    box-shadow: 0 14px 38px rgba(15, 23, 36, 0.28);
+}
+
+html[data-theme="dark"] .fcard p,
+html[data-theme="dark"] .fcard h3,
+html[data-theme="dark"] .fcard .ficon,
+html[data-theme="dark"] .tcard *,
+body.dark-mode .fcard p,
+body.dark-mode .fcard h3,
+body.dark-mode .fcard .ficon,
+body.dark-mode .tcard * {
+    color: #f8fafc;
 }
 
 #home {
@@ -18,24 +45,26 @@ body {
     max-width: 600px;
 }
 #home .homec .badge {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(232, 231, 231, 0.1);
+    background: rgba(22, 163, 74, 0.12);
+    border: 1px solid rgba(22, 163, 74, 0.28);
     border-radius: 50px;
     display: inline-block;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 15px;
-    padding: 5px;
+    padding: 7px 12px;
+    color: #14532d;
 }
 #home .homec h1 {
     font-size: 35px;
     font-weight: 800;
     line-height: 1.2;
     margin-bottom: 12px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.12);
+    color: #0f172a;
 }
 #home .homec h1 span {
-    color:bisque;
+    color: #b45309;
     display: block;
 }
 .homec p {
@@ -43,6 +72,23 @@ body {
     opacity: 0.9;
     margin-bottom: 25px;
     max-width: 520px;
+    color: #1f2937;
+}
+html[data-theme="dark"] #home .homec .badge,
+body.dark-mode #home .homec .badge {
+    background: rgba(22, 163, 74, 0.15);
+    border-color: rgba(134, 239, 172, 0.3);
+    color: #dcfce7;
+}
+html[data-theme="dark"] #home .homec h1,
+html[data-theme="dark"] .homec p,
+body.dark-mode #home .homec h1,
+body.dark-mode .homec p {
+    color: #e5f6ff;
+}
+html[data-theme="dark"] #home .homec h1 span,
+body.dark-mode #home .homec h1 span {
+    color: #fdba74;
 }
 .homebtns {
     display: flex;
@@ -160,23 +206,40 @@ body {
     width: 65px;
     height: 65px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, rgba(22,163,74,0.18), rgba(249,115,22,0.18));
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 12px;
     font-size: 18px;
-    color: #fff;
+    color: #0f172a;
+    border: 1px solid rgba(15, 23, 42, 0.08);
 }
 .fcard h3 {
     font-size: 13px;
     font-weight: 700;
     margin-bottom: 8px;
+    color: #111827;
 }
 .fcard p {
     font-size: 0.95rem;
-    opacity: 0.85;
+    opacity: 0.9;
     line-height: 1.5;
+    color: #374151;
+}
+html[data-theme="dark"] .fcard .ficon,
+body.dark-mode .fcard .ficon {
+    background: linear-gradient(135deg, rgba(22,163,74,0.25), rgba(249,115,22,0.25));
+    color: #f8fafc;
+    border-color: rgba(148, 163, 184, 0.22);
+}
+html[data-theme="dark"] .fcard h3,
+body.dark-mode .fcard h3 {
+    color: #f8fafc;
+}
+html[data-theme="dark"] .fcard p,
+body.dark-mode .fcard p {
+    color: #dbeafe;
 }
 #howitworks {
     padding: 50px 5%;

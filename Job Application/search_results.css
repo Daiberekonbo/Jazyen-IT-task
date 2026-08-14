@@ -9,6 +9,21 @@ body {
     color: #fff;
 }
 
+html[data-theme="dark"] body,
+body.dark-mode {
+    background: linear-gradient(135deg, #071022 0%, #0d1b3d 38%, #220f3a 100%);
+    color: var(--dark-text);
+}
+
+html[data-theme="dark"] .job-card,
+html[data-theme="dark"] .search-bar,
+body.dark-mode .job-card,
+body.dark-mode .search-bar {
+    background: rgba(11, 18, 32, 0.82);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: var(--dark-text);
+}
+
 #search-results {
     padding: 100px 5% 40px;
     max-width: 1200px;

@@ -1,5 +1,22 @@
 /* Page-specific messages styles only; global resets, nav, and utility classes are provided by design_system.css */
 
+html[data-theme="dark"] body,
+body.dark-mode {
+    background: linear-gradient(135deg, #071022 0%, #0d1b3d 38%, #220f3a 100%);
+    color: var(--dark-text);
+}
+
+html[data-theme="dark"] .messages-container,
+html[data-theme="dark"] .conversation-item,
+html[data-theme="dark"] .chat-area,
+body.dark-mode .messages-container,
+body.dark-mode .conversation-item,
+body.dark-mode .chat-area {
+    background: rgba(11, 18, 32, 0.82);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: var(--dark-text);
+}
+
 #messages {
     padding: 100px 5% 40px;
     max-width: 1200px;

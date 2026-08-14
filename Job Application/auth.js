@@ -189,6 +189,24 @@ function getUserSettings() {
     return stored ? JSON.parse(stored) : null;
 }
 
+function updateSidebarUserInfo() {
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
+
+    const profile = getCurrentUser() || getProfileData() || {};
+    const name = profile.name || 'User';
+    const email = profile.email || 'user@email.com';
+    const avatar = sidebar.querySelector('.sidebar-avatar');
+    const nameEl = sidebar.querySelector('.sidebar-header h3');
+    const emailEl = sidebar.querySelector('.sidebar-header p');
+
+    if (avatar) avatar.textContent = name.charAt(0).toUpperCase();
+    if (nameEl) nameEl.textContent = name;
+    if (emailEl) emailEl.textContent = email;
+}
+
+window.syncSidebarUser = updateSidebarUserInfo;
+
 // Global init for all pages
 document.addEventListener("DOMContentLoaded", function() {
     // Apply dark mode if saved
@@ -200,9 +218,61 @@ document.addEventListener("DOMContentLoaded", function() {
     // Apply global theme stored by theme.js/localStorage for pages that include only auth.js
     try {
         const storedTheme = localStorage.getItem('theme');
-        if (storedTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
-        else document.documentElement.removeAttribute('data-theme');
+        if (storedTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.body.classList.add('dark-mode');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            document.body.classList.remove('dark-mode');
+        }
     } catch(e) {}
+
+    const currentPage = window.location.pathname.split('/').pop() || 'LandingPage2.html';
+    const loggedInPages = [
+        'DashboardPage.html', 'ProfilePage.html', 'JobsListingPage.html',
+        'MyApplicationsPage.html', 'SavedJobsPage.html', 'NotificationsPage.html',
+        'MessagesPage.html', 'SettingsPage.html', 'SearchResultsPage.html',
+        'JobDetailsPage.html', 'ApplicationSuccessPage.html'
+    ];
+
+    if (loggedInPages.includes(currentPage)) {
+        document.body.classList.add('logged-in-page');
+        const existingSidebar = document.querySelector('.sidebar');
+        if (!existingSidebar) {
+            const sidebar = document.createElement('aside');
+            sidebar.className = 'sidebar';
+            sidebar.innerHTML = `
+                <div class="sidebar-header">
+                    <div class="sidebar-avatar">U</div>
+                    <h3>User</h3>
+                    <p>user@email.com</p>
+                </div>
+                <ul class="sidebar-links">
+                    <li><a href="DashboardPage.html" class="${currentPage === 'DashboardPage.html' ? 'active' : ''}"><span class="fas fa-chart-line"></span> Dashboard</a></li>
+                    <li><a href="ProfilePage.html" class="${currentPage === 'ProfilePage.html' ? 'active' : ''}"><span class="fas fa-user"></span> Profile</a></li>
+                    <li><a href="MyApplicationsPage.html" class="${currentPage === 'MyApplicationsPage.html' ? 'active' : ''}"><span class="fas fa-list-alt"></span> My Applications</a></li>
+                    <li><a href="JobsListingPage.html" class="${currentPage === 'JobsListingPage.html' || currentPage === 'SearchResultsPage.html' || currentPage === 'JobDetailsPage.html' ? 'active' : ''}"><span class="fas fa-search"></span> Browse Jobs</a></li>
+                    <li><a href="SavedJobsPage.html" class="${currentPage === 'SavedJobsPage.html' ? 'active' : ''}"><span class="fas fa-bookmark"></span> Saved Jobs</a></li>
+                    <li><a href="NotificationsPage.html" class="${currentPage === 'NotificationsPage.html' ? 'active' : ''}"><span class="fas fa-bell"></span> Notifications</a></li>
+                    <li><a href="MessagesPage.html" class="${currentPage === 'MessagesPage.html' ? 'active' : ''}"><span class="fas fa-envelope"></span> Messages</a></li>
+                    <li><a href="SettingsPage.html" class="${currentPage === 'SettingsPage.html' ? 'active' : ''}"><span class="fas fa-cog"></span> Settings</a></li>
+                    <li><a href="LandingPage2.html"><span class="fas fa-right-from-bracket"></span> Sign Out</a></li>
+                </ul>
+            `;
+            document.body.insertBefore(sidebar, document.body.firstChild);
+
+            const overlay = document.createElement('div');
+            overlay.className = 'sidebar-overlay';
+            document.body.insertBefore(overlay, document.body.firstChild);
+        }
+
+        updateSidebarUserInfo();
+
+        const nav = document.querySelector('nav');
+        if (nav) {
+            nav.classList.add('top-nav-compact');
+        }
+    }
 
     // Attach logout handlers to all logout links
     document.querySelectorAll('[data-logout]').forEach(function(link) {

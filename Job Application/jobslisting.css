@@ -27,8 +27,8 @@
 .search-bar {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #e5e7eb;
     border-radius: 50px;
     padding: 4px;
     max-width: 700px;
@@ -36,11 +36,12 @@
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
 }
 
 .search-bar:focus-within {
-    border-color: #fff;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.08);
 }
 
 .search-icon {
@@ -56,12 +57,12 @@
     outline: none;
     padding: 14px 5px;
     font-size: 14px;
-    color: #fff;
+    color: var(--dark-text);
     font-family: inherit;
 }
 
 .search-bar input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--gray-text);
 }
 
 .search-btn {
@@ -107,10 +108,10 @@
 
 .filter-group select {
     padding: 10px 12px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #ffffff;
+    border: 1px solid #dfe3ea;
     border-radius: 10px;
-    color: #fff;
+    color: var(--dark-text);
     font-size: 12px;
     font-family: inherit;
     outline: none;
@@ -118,15 +119,16 @@
     transition: all 0.3s ease;
     -webkit-appearance: none;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23374151' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     padding-right: 32px;
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.04);
 }
 
 .filter-group select option {
-    background: #2e7d32;
-    color: #fff;
+    background: #ffffff;
+    color: var(--dark-text);
 }
 
 .filter-group select:focus {
@@ -172,20 +174,72 @@
     margin-bottom: 35px;
 }
 
+.job-grid .empty-state {
+    grid-column: 1 / -1;
+    max-width: 520px;
+    width: 100%;
+    margin: 24px auto 0;
+    padding: 42px 28px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.job-grid .empty-state .fas {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 42px;
+    color: var(--primary);
+}
+
+.job-grid .empty-state h3 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    color: var(--dark-text);
+}
+
+.job-grid .empty-state p {
+    font-size: 14px;
+    color: var(--gray-text);
+    margin: 0;
+}
+
+html[data-theme="dark"] .job-grid .empty-state,
+body.dark-mode .job-grid .empty-state {
+    background: rgba(11, 18, 32, 0.82);
+    border-color: rgba(148, 163, 184, 0.25);
+}
+
+html[data-theme="dark"] .job-grid .empty-state .fas,
+body.dark-mode .job-grid .empty-state .fas {
+    color: #7dd3fc;
+}
+
+html[data-theme="dark"] .job-grid .empty-state h3,
+html[data-theme="dark"] .job-grid .empty-state p,
+body.dark-mode .job-grid .empty-state h3,
+body.dark-mode .job-grid .empty-state p {
+    color: #e5eefb;
+}
+
 .job-card {
     display: block;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
     padding: 22px;
     transition: all 0.3s ease;
     cursor: pointer;
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+    color: var(--dark-text);
 }
 
 .job-card:hover {
     transform: translateY(-6px);
-    background: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.12);
 }
 
 .job-top {
@@ -224,6 +278,7 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    color: var(--gray-text);
 }
 
 .job-badge {
@@ -256,6 +311,7 @@
     gap: 16px;
     flex-wrap: wrap;
     margin-bottom: 12px;
+    color: var(--gray-text);
 }
 
 .job-mid span {
@@ -281,10 +337,11 @@
 
 .job-tags span {
     padding: 4px 12px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #f3f4f6;
+    color: var(--dark-text);
     border-radius: 50px;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .pagination {

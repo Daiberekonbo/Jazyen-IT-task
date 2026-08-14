@@ -35,22 +35,22 @@ function renderJobSummary(job) {
             <div class="summary-logo">${job.logo}</div>
             <div class="summary-info">
                 <h3>${job.title}</h3>
-                <p><span class="glyphicon glyphicon-briefcase"></span> ${job.company}</p>
+                <p><span class="fas fa-briefcase"></span> ${job.company}</p>
             </div>
             <span class="summary-status">Applied</span>
         </div>
         <div class="summary-details">
             <span class="summary-detail">
-                <span class="glyphicon glyphicon-map-marker"></span> ${job.location}
+                <span class="fas fa-map-marker-alt"></span> ${job.location}
             </span>
             <span class="summary-detail">
-                <span class="glyphicon glyphicon-usd"></span> ${job.salary}
+                <span class="fas fa-dollar-sign"></span> ${job.salary}
             </span>
             <span class="summary-detail">
-                <span class="glyphicon glyphicon-time"></span> ${job.type}
+                <span class="fas fa-clock"></span> ${job.type}
             </span>
             <span class="summary-detail">
-                <span class="glyphicon glyphicon-education"></span> ${job.experience}
+                <span class="fas fa-graduation-cap"></span> ${job.experience}
             </span>
         </div>
     `;
@@ -133,7 +133,7 @@ function initSuccessPage() {
             <div class="summary-loading">
                 <p>We couldn't find the job you applied for.</p>
                 <a href="JobsListingPage.html" class="action-btn secondary" style="margin-top: 15px;">
-                    <span class="glyphicon glyphicon-search"></span> Browse Jobs
+                    <span class="fas fa-search"></span> Browse Jobs
                 </a>
             </div>
         `;

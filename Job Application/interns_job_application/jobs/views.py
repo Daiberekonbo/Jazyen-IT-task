@@ -35,41 +35,61 @@ def application_list_create(request):
     if request.method == 'GET':
         job_id = request.query_params.get('job_id')
         applicant_id = request.query_params.get('applicant_id')
+        company_id = request.query_params.get('company_id')
 
         query = {}
         if job_id:
             query['job_id'] = job_id
         if applicant_id:
             query['applicant_id'] = applicant_id
+        if company_id:
+            query['company_id'] = company_id
 
         applications = list(applications_collection.find(query))
         for app in applications:
             app['_id'] = str(app['_id'])
         return Response(applications)
 
-    # POST
     data = request.data
     job_id = data.get("job_id")
     applicant_id = data.get("applicant_id")
+    company_id = data.get("company_id") or data.get("employer_id")
 
     if not job_id or not applicant_id:
         return Response({"error": "job_id and applicant_id are required"}, status=400)
 
-    # Prevent duplicate applications for the same job by the same applicant
     existing = applications_collection.find_one({"job_id": str(job_id), "applicant_id": str(applicant_id)})
     if existing:
         return Response({"error": "You have already applied for this job"}, status=400)
 
     application = {
         "job_id": str(job_id),
+        "company_id": str(company_id) if company_id else None,
         "applicant_id": str(applicant_id),
-        "resume_url": data.get("resume_url"),
+        "applicant_name": data.get("applicant_name") or "",
+        "applicant_email": data.get("applicant_email") or "",
+        "phone": data.get("phone") or "",
+        "cv_url": data.get("cv_url") or data.get("resume_url"),
+        "passport_url": data.get("passport_url"),
+        "cover_letter": data.get("cover_letter") or "",
         "status": "pending",
         "applied_at": datetime.utcnow()
     }
 
     result = applications_collection.insert_one(application)
-    return Response({"id": str(result.inserted_id)}, status=201)
+    return Response({"id": str(result.inserted_id), "application": application}, status=201)
+
+
+@api_view(['GET'])
+def company_applications(request):
+    company_id = request.query_params.get('company_id') or request.query_params.get('employer_id')
+    if not company_id:
+        return Response({"error": "company_id is required"}, status=400)
+
+    records = list(applications_collection.find({"company_id": str(company_id)}))
+    for item in records:
+        item['_id'] = str(item['_id'])
+    return Response(records)
 
 
 @api_view(['PATCH'])

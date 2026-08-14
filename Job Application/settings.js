@@ -24,51 +24,77 @@ const defaultSettings = {
     }
 };
 
+function getMergedSettings() {
+    const saved = JSON.parse(localStorage.getItem("userSettings") || "{}");
+    return {
+        ...defaultSettings,
+        ...saved,
+        notifications: {
+            ...defaultSettings.notifications,
+            ...(saved.notifications || {})
+        }
+    };
+}
+
 // Load settings from localStorage, or use defaults
-let userSettings = JSON.parse(localStorage.getItem("userSettings")) || defaultSettings;
+let userSettings = getMergedSettings();
 
 /* SECTION 3: HELPER FUNCTIONS */
 
 // Applies dark mode to the page
 function applyDarkMode(enabled) {
+    if (window.appTheme && typeof window.appTheme.setTheme === 'function') {
+        window.appTheme.setTheme(enabled ? 'dark' : 'light');
+        return;
+    }
     document.body.classList.toggle("dark-mode", enabled);
+    document.documentElement.toggleAttribute('data-theme', enabled);
 }
 
 // Loads saved settings into the form controls
 function loadSettings() {
+    userSettings = getMergedSettings();
+
     // Dark mode
-    darkModeToggle.checked = userSettings.darkMode;
-    applyDarkMode(userSettings.darkMode);
+    if (darkModeToggle) {
+        darkModeToggle.checked = Boolean(userSettings.darkMode);
+    }
+    applyDarkMode(Boolean(userSettings.darkMode));
 
     // Language
-    languageSelect.value = userSettings.language;
+    if (languageSelect) {
+        languageSelect.value = userSettings.language || "en";
+    }
 
     // Notification preferences
-    notifJobMatches.checked = userSettings.notifications.jobMatches;
-    notifAppUpdates.checked = userSettings.notifications.appUpdates;
-    notifMessages.checked = userSettings.notifications.messages;
-    notifMarketing.checked = userSettings.notifications.marketing;
+    const notifications = userSettings.notifications || defaultSettings.notifications;
+    if (notifJobMatches) notifJobMatches.checked = Boolean(notifications.jobMatches);
+    if (notifAppUpdates) notifAppUpdates.checked = Boolean(notifications.appUpdates);
+    if (notifMessages) notifMessages.checked = Boolean(notifications.messages);
+    if (notifMarketing) notifMarketing.checked = Boolean(notifications.marketing);
 }
 
 // Saves settings to localStorage and shows a toast
 function saveSettings() {
-    // Update the settings object from form values
+    const currentTheme = (window.appTheme && typeof window.appTheme.getTheme === 'function')
+        ? window.appTheme.getTheme()
+        : (document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+
+    // Update the settings object from form values without changing the app theme.
     userSettings = {
-        darkMode: darkModeToggle.checked,
-        language: languageSelect.value,
+        ...defaultSettings,
+        darkMode: currentTheme === 'dark',
+        language: languageSelect ? languageSelect.value : "en",
         notifications: {
-            jobMatches: notifJobMatches.checked,
-            appUpdates: notifAppUpdates.checked,
-            messages: notifMessages.checked,
-            marketing: notifMarketing.checked
+            jobMatches: notifJobMatches ? notifJobMatches.checked : true,
+            appUpdates: notifAppUpdates ? notifAppUpdates.checked : true,
+            messages: notifMessages ? notifMessages.checked : true,
+            marketing: notifMarketing ? notifMarketing.checked : false
         }
     };
 
-    // Save to localStorage
+    // Save to localStorage without mutating the global theme state.
     localStorage.setItem("userSettings", JSON.stringify(userSettings));
-
-    // Apply dark mode immediately
-    applyDarkMode(userSettings.darkMode);
 
     // Show a toast notification
     showToast("Settings saved successfully!", "success");
@@ -81,8 +107,8 @@ function showToast(message, type) {
     toast.className = "toast " + type;
 
     // Add icon + message
-    const icon = type === "success" ? "glyphicon-ok" : "glyphicon-info-sign";
-    toast.innerHTML = `<span class="glyphicon ${icon}"></span> ${message}`;
+    const icon = type === "success" ? "fas fa-check-circle" : "fas fa-info-circle";
+    toast.innerHTML = `<span class="${icon}"></span> ${message}`;
 
     // Add to the page
     document.body.appendChild(toast);
@@ -99,16 +125,22 @@ function showToast(message, type) {
 
 // Live preview dark mode as user toggles
 function previewDarkMode() {
-    applyDarkMode(darkModeToggle.checked);
+    // The settings page does not own the global dark mode state.
+    // Any user theme change is handled by the top-level theme toggle.
+    return;
 }
 
 /* SECTION 4: EVENT LISTENERS */
 
 // Live preview dark mode toggle
-darkModeToggle.addEventListener("change", previewDarkMode);
+if (darkModeToggle) {
+    darkModeToggle.addEventListener("change", previewDarkMode);
+}
 
 // Save settings button
-saveSettingsBtn.addEventListener("click", saveSettings);
+if (saveSettingsBtn) {
+    saveSettingsBtn.addEventListener("click", saveSettings);
+}
 
 /* ------------------------------------------------
    FUNCTION: handleSignOut()

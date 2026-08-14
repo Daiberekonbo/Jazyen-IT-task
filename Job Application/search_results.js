@@ -48,14 +48,14 @@ function createJobCard(job) {
                 <div class="job-logo">${job.logo}</div>
                 <div class="job-info">
                     <h3>${job.title}</h3>
-                    <p class="company"><span class="glyphicon glyphicon-briefcase"></span> ${job.company}</p>
+                    <p class="company"><span class="fas fa-briefcase"></span> ${job.company}</p>
                 </div>
                 <span class="job-badge ${typeClass}">${job.type}</span>
             </div>
             <div class="job-mid">
-                <span><span class="glyphicon glyphicon-map-marker"></span> ${job.location}</span>
-                <span><span class="glyphicon glyphicon-usd"></span> ${job.salary}</span>
-                <span><span class="glyphicon glyphicon-time"></span> Posted ${job.posted}</span>
+                <span><span class="fas fa-map-marker-alt"></span> ${job.location}</span>
+                <span><span class="fas fa-dollar-sign"></span> ${job.salary}</span>
+                <span><span class="fas fa-clock"></span> Posted ${job.posted}</span>
             </div>
             <p class="job-desc">${job.desc}</p>
             <div class="job-tags">

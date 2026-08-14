@@ -79,6 +79,11 @@ body {
     color: var(--dark-text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body, input, select, textarea, button {
+    color: var(--dark-text);
 }
 
 a {
@@ -383,7 +388,99 @@ nav {
     left: 0;
     right: 0;
     z-index: 1000;
+    -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    padding: 24px 18px;
+    background: rgba(15, 23, 36, 0.95);
+    border-right: 1px solid rgba(148, 163, 184, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    z-index: 1100;
+    box-shadow: var(--shadow-lg);
+}
+
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 14px 10px 18px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.sidebar-avatar {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.sidebar-header h3 {
+    font-size: 1rem;
+    color: var(--white);
+}
+
+.sidebar-header p {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.sidebar-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.sidebar-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 999px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.sidebar-links a:hover,
+.sidebar-links a.active {
+    background: rgba(22, 163, 74, 0.18);
+    color: var(--white);
+}
+
+.sidebar-overlay {
+    display: none;
+}
+
+body.logged-in-page {
+    padding-left: 280px;
+}
+
+body.logged-in-page .top-nav-compact {
+    display: none;
+}
+
+body.logged-in-page > section,
+body.logged-in-page > footer {
+    margin-left: 0;
 }
 
 nav ul {
@@ -872,6 +969,94 @@ html[data-theme="dark"] {
     --shadow-lg: 0 14px 30px rgba(0,0,0,0.65);
     --shadow-primary: 0 6px 20px rgba(22,163,74,0.12);
     --shadow-secondary: 0 6px 20px rgba(249,115,22,0.08);
+}
+
+html[data-theme="dark"] body,
+body.dark-mode {
+    background: linear-gradient(135deg, #071022 0%, #0d1b3d 38%, #220f3a 100%);
+    color: var(--dark-text);
+}
+
+html[data-theme="dark"] body *,
+body.dark-mode * {
+    color: inherit;
+}
+
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select,
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    color: var(--dark-text);
+    background-color: rgba(15, 23, 36, 0.85);
+}
+
+html[data-theme="dark"] .auth-card,
+html[data-theme="dark"] .profile-card,
+html[data-theme="dark"] .detail-header,
+html[data-theme="dark"] .job-summary,
+html[data-theme="dark"] .messages-container,
+html[data-theme="dark"] .settings-card,
+html[data-theme="dark"] .notif-item,
+html[data-theme="dark"] .saved-card,
+html[data-theme="dark"] .job-card,
+html[data-theme="dark"] .fcard,
+html[data-theme="dark"] .tcard,
+html[data-theme="dark"] .app-card,
+html[data-theme="dark"] .filter-labels,
+html[data-theme="dark"] .search-bar,
+html[data-theme="dark"] .saved-controls .search-bar,
+html[data-theme="dark"] .settings-container,
+html[data-theme="dark"] form,
+html[data-theme="dark"] .empty-state,
+body.dark-mode .auth-card,
+body.dark-mode .profile-card,
+body.dark-mode .detail-header,
+body.dark-mode .job-summary,
+body.dark-mode .messages-container,
+body.dark-mode .settings-card,
+body.dark-mode .notif-item,
+body.dark-mode .saved-card,
+body.dark-mode .job-card,
+body.dark-mode .fcard,
+body.dark-mode .tcard,
+body.dark-mode .app-card,
+body.dark-mode .filter-labels,
+body.dark-mode .search-bar,
+body.dark-mode .saved-controls .search-bar,
+body.dark-mode .settings-container,
+body.dark-mode form,
+body.dark-mode .empty-state {
+    background: rgba(11, 18, 32, 0.82);
+    border-color: rgba(148, 163, 184, 0.25);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    color: var(--dark-text);
+}
+
+html[data-theme="dark"] .profile-card *,
+html[data-theme="dark"] .detail-header *,
+html[data-theme="dark"] .job-summary *,
+html[data-theme="dark"] .messages-container *,
+html[data-theme="dark"] .settings-card *,
+html[data-theme="dark"] .notif-item *,
+html[data-theme="dark"] .saved-card *,
+html[data-theme="dark"] .job-card *,
+html[data-theme="dark"] .fcard *,
+html[data-theme="dark"] .tcard *,
+html[data-theme="dark"] .app-card *,
+body.dark-mode .profile-card *,
+body.dark-mode .detail-header *,
+body.dark-mode .job-summary *,
+body.dark-mode .messages-container *,
+body.dark-mode .settings-card *,
+body.dark-mode .notif-item *,
+body.dark-mode .saved-card *,
+body.dark-mode .job-card *,
+body.dark-mode .fcard *,
+body.dark-mode .tcard *,
+body.dark-mode .app-card * {
+    color: inherit;
 }
 
 /* Theme toggle button */

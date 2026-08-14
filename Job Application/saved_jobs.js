@@ -36,18 +36,18 @@ function createSavedCard(job) {
                 <div class="saved-card-logo">${job.logo}</div>
                 <div class="saved-card-info">
                     <h3>${job.title}</h3>
-                    <p><span class="glyphicon glyphicon-briefcase"></span> ${job.company}</p>
+                    <p><span class="fas fa-briefcase"></span> ${job.company}</p>
                 </div>
             </div>
             <div class="saved-card-mid">
-                <span><span class="glyphicon glyphicon-map-marker"></span> ${job.location}</span>
-                <span><span class="glyphicon glyphicon-usd"></span> ${job.salary}</span>
-                <span><span class="glyphicon glyphicon-time"></span> Posted ${job.posted}</span>
+                <span><span class="fas fa-map-marker-alt"></span> ${job.location}</span>
+                <span><span class="fas fa-dollar-sign"></span> ${job.salary}</span>
+                <span><span class="fas fa-clock"></span> Posted ${job.posted}</span>
             </div>
             <div class="saved-card-actions">
                 <a href="JobDetailsPage.html?id=${job.id}" class="apply-btn">Apply Now</a>
                 <button class="remove-btn" data-id="${job.id}">
-                    <span class="glyphicon glyphicon-trash"></span> Remove
+                    <span class="fas fa-trash"></span> Remove
                 </button>
             </div>
         </div>

@@ -1,5 +1,22 @@
 /* Page-specific job details styles only; global resets, nav, and utility classes are provided by design_system.css */
 
+html[data-theme="dark"] body,
+body.dark-mode {
+    background: linear-gradient(135deg, #071022 0%, #0d1b3d 38%, #220f3a 100%);
+    color: var(--dark-text);
+}
+
+html[data-theme="dark"] .detail-header,
+html[data-theme="dark"] .tabs,
+html[data-theme="dark"] .cstat,
+body.dark-mode .detail-header,
+body.dark-mode .tabs,
+body.dark-mode .cstat {
+    background: rgba(11, 18, 32, 0.82);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: var(--dark-text);
+}
+
 #job-detail {
     padding: 100px 5% 40px;
     max-width: 1000px;

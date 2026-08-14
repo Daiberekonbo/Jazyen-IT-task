@@ -48,10 +48,11 @@ function updateUserInfo() {
                 if (currentUser.name) {
                     const firstName = currentUser.name.split(" ")[0];
                     welcomeHeading.innerHTML = 'Welcome back, ' + firstName + '! <span class="wave">👋</span>';
-                    sidebarName.textContent = currentUser.name;
-                    sidebarAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+                    if (sidebarName) sidebarName.textContent = currentUser.name;
+                    if (sidebarAvatar) sidebarAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
                 }
-                if (currentUser.email) sidebarEmail.textContent = currentUser.email;
+                if (currentUser.email && sidebarEmail) sidebarEmail.textContent = currentUser.email;
+                if (window.syncSidebarUser) window.syncSidebarUser();
 
                 // fetch applied jobs count from API
                 try {
@@ -79,10 +80,11 @@ function updateUserInfo() {
             if (currentUser.name) {
                 const firstName = currentUser.name.split(" ")[0];
                 welcomeHeading.innerHTML = 'Welcome back, ' + firstName + '! <span class="wave">👋</span>';
-                sidebarName.textContent = currentUser.name;
-                sidebarAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
+                if (sidebarName) sidebarName.textContent = currentUser.name;
+                if (sidebarAvatar) sidebarAvatar.textContent = currentUser.name.charAt(0).toUpperCase();
             }
-            if (currentUser.email) sidebarEmail.textContent = currentUser.email;
+            if (currentUser.email && sidebarEmail) sidebarEmail.textContent = currentUser.email;
+            if (window.syncSidebarUser) window.syncSidebarUser();
         }
     })();
 }

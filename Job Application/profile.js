@@ -160,7 +160,7 @@ uploadBtn.addEventListener("click", function() {
     fileInput.addEventListener("change", function() {
         if (fileInput.files.length > 0) {
             const file = fileInput.files[0];
-            resumeStatus.innerHTML = `<span class="glyphicon glyphicon-file"></span> ${file.name} <span class="resume-size">(${(file.size / 1024 / 1024).toFixed(1)} MB)</span>`;
+            resumeStatus.innerHTML = `<span class="fas fa-file-alt"></span> ${file.name} <span class="resume-size">(${(file.size / 1024 / 1024).toFixed(1)} MB)</span>`;
         }
     });
 });

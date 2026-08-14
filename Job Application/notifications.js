@@ -28,19 +28,19 @@ let currentFilter = "all";
 
 /* SECTION 3: HELPER FUNCTIONS */
 
-// Returns the icon glyphicon class for a notification type
+// Returns the Font Awesome icon class for a notification type
 function getIconClass(type) {
     switch (type) {
         case "accepted":
-            return "glyphicon-ok";
+            return "fas fa-check-circle";
         case "interview":
-            return "glyphicon-calendar";
+            return "fas fa-calendar-check";
         case "match":
-            return "glyphicon-star";
+            return "fas fa-star";
         case "password":
-            return "glyphicon-lock";
+            return "fas fa-lock";
         default:
-            return "glyphicon-bell";
+            return "fas fa-bell";
     }
 }
 
@@ -55,7 +55,7 @@ function createNotificationHTML(notif) {
     return `
         <div class="notif-item ${unreadClass}" data-id="${notif.id}">
             <div class="notif-icon ${notif.type}">
-                <span class="glyphicon ${iconClass}"></span>
+                <span class="${iconClass}"></span>
             </div>
             <div class="notif-content">
                 <h4>${notif.title}</h4>
@@ -65,7 +65,7 @@ function createNotificationHTML(notif) {
             <div class="notif-actions">
                 ${readButton}
                 <button class="notif-action-btn delete-btn" data-id="${notif.id}">
-                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="fas fa-trash"></span>
                 </button>
             </div>
         </div>

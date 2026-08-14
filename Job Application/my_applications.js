@@ -40,7 +40,7 @@ function renderApplications(filter) {
         });
 
     if (filtered.length === 0) {
-        appList.innerHTML = '<div class="empty-state"><span class="glyphicon glyphicon-document"></span><h3>No applications found</h3><p>Apply to jobs to see them here.</p></div>';
+        appList.innerHTML = '<div class="empty-state"><span class="fas fa-file-alt"></span><h3>No applications found</h3><p>Apply to jobs to see them here.</p></div>';
         return;
     }
 

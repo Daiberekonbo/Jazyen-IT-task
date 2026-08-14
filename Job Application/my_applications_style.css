@@ -5,6 +5,21 @@ body {
     color: #fff;
 }
 
+html[data-theme="dark"] body,
+body.dark-mode {
+    background: linear-gradient(135deg, #071022 0%, #0d1b3d 38%, #220f3a 100%);
+    color: var(--dark-text);
+}
+
+html[data-theme="dark"] .app-card,
+html[data-theme="dark"] .filter-labels,
+body.dark-mode .app-card,
+body.dark-mode .filter-labels {
+    background: rgba(11, 18, 32, 0.82);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: var(--dark-text);
+}
+
 #my-applications {
     padding: 100px 5% 40px;
     max-width: 1000px;
@@ -136,30 +151,38 @@ body {
 }
 
 .count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
     padding: 2px 8px;
     border-radius: 50px;
     font-size: 9px;
-    font-weight: 700;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12);
 }
 
 .pending-badge {
-    background: rgba(255, 152, 0, 0.3);
-    color: #ffb74d;
+    background: #f59e0b;
+    color: #fff;
 }
 
 .interview-badge {
-    background: rgba(33, 150, 243, 0.3);
-    color: #64b5f6;
+    background: #2563eb;
+    color: #fff;
 }
 
 .accepted-badge {
-    background: rgba(76, 175, 80, 0.3);
-    color: #81c784;
+    background: #16a34a;
+    color: #fff;
 }
 
 .rejected-badge {
-    background: rgba(244, 67, 54, 0.3);
-    color: #e57373;
+    background: #dc2626;
+    color: #fff;
 }
 
 .app-list {

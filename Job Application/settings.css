@@ -2,32 +2,20 @@
    SETTINGS PAGE - Stylesheet
    ============================================================ */
 
-/* SECTION 1: Dark mode variables */
-:root {
-    --bg-gradient: linear-gradient(135deg, #2e7d32 0%, #66bb6a 50%, #a5d6a7 100%);
-    --card-bg: rgba(255, 255, 255, 0.1);
-    --card-border: rgba(255, 255, 255, 0.2);
-    --text-color: #fff;
-    --text-secondary: rgba(255, 255, 255, 0.7);
-}
-
-body.dark-mode {
-    --bg-gradient: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #4caf50 100%);
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --card-border: rgba(255, 255, 255, 0.1);
-    --text-color: #e0e0e0;
-    --text-secondary: rgba(224, 224, 224, 0.6);
-}
-
-/* SECTION 2: Global styles */
 /* Shared reset, navigation and back-arrow styles are provided by design_system.css */
 
 body {
-    background: var(--bg-gradient);
+    background: var(--light-bg);
     min-height: 100vh;
-    color: var(--text-color);
+    color: var(--dark-text);
     line-height: 1.6;
     transition: background 0.3s ease, color 0.3s ease;
+}
+
+html[data-theme="dark"] body,
+body.dark-mode {
+    background: linear-gradient(135deg, #071022 0%, #0d1b3d 38%, #220f3a 100%);
+    color: var(--dark-text);
 }
 
 /* SECTION 5: Main content */
@@ -48,7 +36,7 @@ body {
     margin-bottom: 5px;
 }
 
-.settings-header h2 .glyphicon-cog {
+.settings-header h2 .fa-cog {
     color: #ce93d8;
     animation: spin 6s linear infinite;
 }
@@ -66,11 +54,12 @@ body {
 }
 
 .settings-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
+    background: var(--white);
+    border: 1px solid var(--gray-light);
     border-radius: 15px;
     padding: 25px;
     transition: background 0.3s ease, border 0.3s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 .settings-card h3 {
@@ -78,14 +67,18 @@ body {
     font-weight: 700;
     margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--gray-light);
     display: flex;
     align-items: center;
     gap: 10px;
+    color: var(--dark-text);
 }
 
-.settings-card h3 .glyphicon {
-    color: #64b5f6;
+.settings-card h3 .fa,
+.settings-card h3 .fas,
+.settings-card h3 .far,
+.settings-card h3 .fab {
+    color: var(--primary);
 }
 
 .setting-row {
@@ -109,11 +102,13 @@ body {
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 3px;
+    color: var(--dark-text);
 }
 
 .setting-info span {
     font-size: 11px;
-    opacity: 0.6;
+    opacity: 0.8;
+    color: var(--gray-text);
 }
 
 /* SECTION 7: Toggle switch */
@@ -138,7 +133,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(107, 114, 128, 0.35);
     border-radius: 50px;
     transition: 0.3s;
 }
@@ -156,7 +151,7 @@ body {
 }
 
 .toggle input:checked + .toggle-slider {
-    background: #2e7d32;
+    background: var(--primary);
 }
 
 .toggle input:checked + .toggle-slider::before {
@@ -165,11 +160,11 @@ body {
 
 /* SECTION 8: Select */
 .setting-select {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--gray-bg);
+    border: 1px solid var(--gray-light);
     border-radius: 50px;
     padding: 8px 15px;
-    color: #fff;
+    color: var(--dark-text);
     font-size: 12px;
     cursor: pointer;
     outline: none;
@@ -177,15 +172,15 @@ body {
 }
 
 .setting-select option {
-    background: #2e7d32;
-    color: #fff;
+    background: var(--white);
+    color: var(--dark-text);
 }
 
 /* SECTION 9: Save button */
 .save-settings-btn {
     padding: 14px 35px;
-    background: #fff;
-    color: #2e7d32;
+    background: var(--primary);
+    color: var(--white);
     border: none;
     border-radius: 50px;
     font-weight: 700;
@@ -193,11 +188,12 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     align-self: flex-start;
+    box-shadow: var(--shadow-primary);
 }
 
 .save-settings-btn:hover {
-    background: #2e7d32;
-    color: #fff;
+    background: var(--primary-hover);
+    color: var(--white);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }

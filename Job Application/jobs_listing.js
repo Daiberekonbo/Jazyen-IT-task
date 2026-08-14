@@ -30,14 +30,14 @@ function createJobCard(job) {
                 <div class="job-logo">${job.logo}</div>
                 <div class="job-info">
                     <h3>${job.title}</h3>
-                    <p class="company"><span class="glyphicon glyphicon-briefcase"></span> ${job.company}</p>
+                    <p class="company"><span class="fas fa-briefcase"></span> ${job.company}</p>
                 </div>
                 <span class="job-badge ${job.type.toLowerCase().replace(" ", "-")}">${job.type}</span>
             </div>
             <div class="job-mid">
-                <span><span class="glyphicon glyphicon-map-marker"></span> ${job.location}</span>
-                <span><span class="glyphicon glyphicon-usd"></span> ${job.salary}</span>
-                <span><span class="glyphicon glyphicon-time"></span> Posted ${job.posted}</span>
+                <span><span class="fas fa-map-marker-alt"></span> ${job.location}</span>
+                <span><span class="fas fa-dollar-sign"></span> ${job.salary}</span>
+                <span><span class="fas fa-clock"></span> Posted ${job.posted}</span>
             </div>
             <p class="job-desc">${job.desc}</p>
             <div class="job-tags">
@@ -46,7 +46,7 @@ function createJobCard(job) {
             <div class="job-actions">
                 <a href="JobDetailsPage.html?id=${job.id}" class="view-job-btn">View Details</a>
                 <button class="save-job-btn ${isSaved ? 'saved' : ''}" data-id="${job.id}">
-                    <span class="glyphicon ${isSaved ? 'glyphicon-heart' : 'glyphicon-heart-empty'}"></span>
+                    <span class="${isSaved ? 'fas fa-heart' : 'far fa-heart'}"></span>
                 </button>
             </div>
         </div>
@@ -55,7 +55,7 @@ function createJobCard(job) {
 
 function renderJobs() {
     if (filteredJobs.length === 0) {
-        jobGrid.innerHTML = '<div class="empty-state"><span class="glyphicon glyphicon-search"></span><h3>No jobs found</h3><p>Try adjusting your filters or search terms.</p></div>';
+        jobGrid.innerHTML = '<div class="empty-state"><span class="fas fa-search"></span><h3>No jobs found</h3><p>Try adjusting your filters or search terms.</p></div>';
         resultsInfo.textContent = "Showing 0 jobs";
         paginationContainer.innerHTML = "";
         return;

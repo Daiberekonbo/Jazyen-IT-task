@@ -68,11 +68,11 @@ function loadJobDetails() {
     // Update the page with job details
     detailLogo.textContent = currentJob.logo;
     detailTitle.textContent = currentJob.title;
-    detailCompany.innerHTML = `<span class="glyphicon glyphicon-briefcase"></span> ${currentJob.company} &bull; <span class="glyphicon glyphicon-map-marker"></span> ${currentJob.location}`;
+    detailCompany.innerHTML = `<span class="fas fa-briefcase"></span> ${currentJob.company} &bull; <span class="fas fa-map-marker-alt"></span> ${currentJob.location}`;
     detailMeta.innerHTML = `
         <span class="job-badge ${currentJob.type.toLowerCase().replace(" ", "-")}">${currentJob.type}</span>
-        <span><span class="glyphicon glyphicon-usd"></span> ${currentJob.salary}</span>
-        <span><span class="glyphicon glyphicon-time"></span> Posted ${currentJob.posted}</span>
+        <span><span class="fas fa-dollar-sign"></span> ${currentJob.salary}</span>
+        <span><span class="fas fa-clock"></span> Posted ${currentJob.posted}</span>
     `;
 }
 
