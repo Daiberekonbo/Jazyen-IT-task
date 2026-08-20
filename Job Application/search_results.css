@@ -5,8 +5,8 @@
 /* Shared reset, navigation and back-arrow styles are provided by design_system.css */
 
 body {
-    background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 50%, #a5d6a7 100%);
-    color: #fff;
+    background: var(--light-bg);
+    color: var(--dark-text);
 }
 
 html[data-theme="dark"] body,
@@ -42,18 +42,18 @@ body.dark-mode .search-bar {
 }
 
 .search-header h2 .glyphicon-search {
-    color: #64b5f6;
+        color: var(--dark-text);
 }
 
 .search-header p {
     font-size: 14px;
-    opacity: 0.8;
+        color: var(--gray-text);
 }
 
 /* SECTION 5: Search bar */
 .search-bar {
-    display: flex;
-    align-items: center;
+        background: var(--white);
+        color: var(--primary);
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px;
@@ -63,8 +63,8 @@ body.dark-mode .search-bar {
 }
 
 .search-bar .search-icon {
-    opacity: 0.6;
-}
+        background: var(--primary-hover);
+        color: var(--white);
 
 .search-bar input {
     flex: 1;
@@ -79,13 +79,13 @@ body.dark-mode .search-bar {
     color: rgba(255, 255, 255, 0.5);
 }
 
-.search-btn {
+        background: rgba(255, 255, 255, 0.06);
     padding: 10px 25px;
     background: #fff;
     color: #2e7d32;
     border: none;
-    border-radius: 50px;
-    font-weight: 600;
+        background: var(--white);
+        border: 1px solid var(--gray-light);
     font-size: 13px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -103,8 +103,8 @@ body.dark-mode .search-bar {
 }
 
 .suggestion-section {
-    margin-bottom: 15px;
-}
+        background: var(--white);
+        border: 1px solid var(--gray-light);
 
 .suggestion-section h4 {
     font-size: 12px;
@@ -113,7 +113,7 @@ body.dark-mode .search-bar {
     opacity: 0.8;
 }
 
-.search-chips {
+        background: var(--primary-bg);
     display: flex;
     flex-wrap: wrap;
     gap: 8px;

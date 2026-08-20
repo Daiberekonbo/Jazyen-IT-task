@@ -1,8 +1,8 @@
 /* Shared reset, navigation and back-arrow styles are provided by design_system.css */
 
 body {
-    background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 50%, #a5d6a7 100%);
-    color: #fff;
+    background: var(--light-bg);
+    color: var(--dark-text);
 }
 
 html[data-theme="dark"] body,
@@ -44,8 +44,8 @@ body.dark-mode .profile-card {
 
 .edit-toggle {
     padding: 10px 24px;
-    background: #fff;
-    color: #2e7d32;
+    background: var(--white);
+    color: var(--primary);
     border-radius: 50px;
     font-weight: 700;
     font-size: 12px;
@@ -139,7 +139,7 @@ body.dark-mode .profile-card {
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 8px;
-    color: #fff;
+    color: var(--white);
     font-size: 14px;
     font-family: inherit;
     outline: none;

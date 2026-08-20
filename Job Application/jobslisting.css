@@ -27,8 +27,8 @@
 .search-bar {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.96);
-    border: 1px solid #e5e7eb;
+    background: var(--white);
+    border: 1px solid var(--gray-light);
     border-radius: 50px;
     padding: 4px;
     max-width: 700px;
@@ -351,24 +351,24 @@ body.dark-mode .job-grid .empty-state p {
     gap: 8px;
 }
 
-.page-btn {
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
+.search-btn {
+    padding: 10px 28px;
+    background: var(--white);
+    color: var(--primary);
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
-
-.page-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
+.search-btn:hover {
+    background: var(--primary-hover);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
-.page-btn.active {
-    background: #fff;
-    color: #2e7d32;
-}
-
+     
 .page-dots {
     font-size: 14px;
     opacity: 0.6;

@@ -1,8 +1,8 @@
 /* Shared reset, navigation and back-arrow styles are provided by design_system.css */
 
 body {
-    background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 50%, #a5d6a7 100%);
-    color: #fff;
+    background: var(--light-bg);
+    color: var(--dark-text);
 }
 
 html[data-theme="dark"] body,
@@ -49,8 +49,8 @@ body.dark-mode .filter-labels {
 .filter-labels {
     display: flex;
     position: relative;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 50px;
     padding: 4px;
     margin-bottom: 25px;

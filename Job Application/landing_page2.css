@@ -97,8 +97,8 @@ body.dark-mode #home .homec h1 span {
 }
 .homebtns .jnbtn {
     border: none;
-    background-color: #fff;
-    color:#2e7d32;
+    background-color: var(--white);
+    color: var(--primary);
     padding: 9px 25px;
     transition: all 0.3s ease;
     border-radius: 50px;
@@ -113,9 +113,9 @@ body.dark-mode #home .homec h1 span {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
 }
 .homebtns .signbtn {
-    border: 2px solid #fff;
+    border: 2px solid var(--white);
     background: transparent;
-    color: #fff;
+    color: var(--white);
     padding: 9px 25px;
     transition: all 0.3s ease;
     border-radius: 50px;

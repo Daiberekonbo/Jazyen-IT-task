@@ -839,6 +839,14 @@ nav .nav-btn:hover {
         padding: 8px 18px;
         font-size: var(--font-sm);
     }
+
+    .page-container {
+        padding: 80px 4% 20px;
+    }
+
+    .page-toolbar .btn {
+        min-width: unset;
+    }
 }
 
 @media (max-width: 900px) {
@@ -873,6 +881,15 @@ nav .nav-btn:hover {
 
     .back-arrow {
         display: none;
+    }
+
+    /* Mobile: hide desktop sidebar and remove left offset */
+    .sidebar {
+        display: none;
+    }
+
+    body.logged-in-page {
+        padding-left: 0;
     }
 }
 
@@ -1085,6 +1102,98 @@ body.dark-mode .app-card * {
 
 html[data-theme="dark"] .theme-toggle {
     background: var(--gray-bg);
+    color: var(--dark-text);
+    border-color: rgba(255,255,255,0.08);
+}
+
+/* Dark-mode button visibility overrides */
+html[data-theme="dark"] .btn,
+body.dark-mode .btn {
+    border-color: rgba(255,255,255,0.06);
+    color: var(--dark-text);
+}
+
+html[data-theme="dark"] .btn-primary,
+body.dark-mode .btn-primary {
+    background: linear-gradient(180deg,var(--primary),var(--primary-hover));
+    color: var(--white);
+    box-shadow: var(--shadow-primary);
+}
+
+html[data-theme="dark"] .btn-secondary,
+body.dark-mode .btn-secondary {
+    background: linear-gradient(180deg,var(--secondary),var(--secondary-hover));
+    color: var(--white);
+    box-shadow: var(--shadow-secondary);
+}
+
+html[data-theme="dark"] .btn-outline,
+body.dark-mode .btn-outline {
+    background: transparent;
+    border-color: rgba(255,255,255,0.12);
+    color: var(--dark-text);
+}
+
+html[data-theme="dark"] .btn-ghost,
+body.dark-mode .btn-ghost {
     color: var(--gray-text);
-    border-color: transparent;
+    background: transparent;
+}
+
+/* Ensure fixed controls (back arrow / theme toggle) are visible on dark backgrounds */
+html[data-theme="dark"] .back-arrow,
+body.dark-mode .back-arrow {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.06);
+    color: var(--dark-text);
+}
+
+/* Make toast and modal close button more legible in dark */
+html[data-theme="dark"] .toast {
+    background: rgba(11,18,32,0.9);
+    border-left-color: var(--primary);
+}
+
+html[data-theme="dark"] .modal-close {
+    color: var(--gray-text);
+}
+
+/* Stronger dark-mode overrides for common page controls (search button, selects) */
+html[data-theme="dark"] .search-bar,
+body.dark-mode .search-bar {
+    background: rgba(11,18,32,0.85) !important;
+    border-color: rgba(255,255,255,0.04) !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .search-bar input,
+body.dark-mode .search-bar input {
+    color: var(--dark-text) !important;
+}
+
+html[data-theme="dark"] .search-btn,
+body.dark-mode .search-btn {
+    background: linear-gradient(180deg,var(--primary),var(--primary-hover)) !important;
+    color: var(--white) !important;
+    box-shadow: var(--shadow-primary) !important;
+    border: none !important;
+}
+
+html[data-theme="dark"] .filter-group select,
+html[data-theme="dark"] select,
+body.dark-mode .filter-group select,
+body.dark-mode select {
+    background: rgba(15,23,36,0.8) !important;
+    color: var(--dark-text) !important;
+    border-color: rgba(255,255,255,0.06) !important;
+    box-shadow: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23FFFFFF' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 12px center !important;
+}
+
+html[data-theme="dark"] .filter-group select option,
+body.dark-mode .filter-group select option {
+    background: rgba(11,18,32,0.9) !important;
+    color: var(--dark-text) !important;
 }

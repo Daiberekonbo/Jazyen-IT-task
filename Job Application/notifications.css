@@ -5,8 +5,8 @@
 /* Shared reset, navigation and back-arrow styles are provided by design_system.css */
 
 body {
-    background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 50%, #a5d6a7 100%);
-    color: #fff;
+    background: var(--light-bg);
+    color: var(--dark-text);
 }
 
 html[data-theme="dark"] body,
@@ -60,10 +60,10 @@ body.dark-mode .tab-btn {
 
 .tab-btn {
     padding: 8px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 50px;
-    color: #fff;
+    color: var(--white);
     font-size: 13px;
     font-weight: 600;
     cursor: pointer;
@@ -74,13 +74,13 @@ body.dark-mode .tab-btn {
 }
 
 .tab-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .tab-btn.active {
-    background: #fff;
-    color: #2e7d32;
-    border-color: #fff;
+    background: var(--white);
+    color: var(--primary);
+    border-color: var(--white);
 }
 
 .unread-badge {
@@ -116,8 +116,8 @@ body.dark-mode .tab-btn {
     display: flex;
     gap: 15px;
     align-items: flex-start;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 15px;
     padding: 18px 20px;
     transition: all 0.3s ease;
@@ -126,12 +126,12 @@ body.dark-mode .tab-btn {
 }
 
 .notif-item:hover {
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.12);
     transform: translateX(4px);
 }
 
 .notif-item.unread {
-    border-left: 4px solid #64b5f6;
+    border-left: 4px solid var(--info);
 }
 
 .notif-icon {
@@ -146,23 +146,23 @@ body.dark-mode .tab-btn {
 }
 
 .notif-icon.accepted {
-    background: rgba(76, 175, 80, 0.25);
-    color: #81c784;
+    background: rgba(22,163,74,0.12);
+    color: var(--success);
 }
 
 .notif-icon.interview {
-    background: rgba(33, 150, 243, 0.25);
-    color: #64b5f6;
+    background: rgba(96,165,250,0.12);
+    color: var(--info);
 }
 
 .notif-icon.match {
-    background: rgba(255, 152, 0, 0.25);
-    color: #ffb74d;
+    background: rgba(249,115,22,0.12);
+    color: var(--warning);
 }
 
 .notif-icon.password {
-    background: rgba(156, 39, 176, 0.25);
-    color: #ce93d8;
+    background: rgba(168,85,247,0.12);
+    color: var(--tertiary);
 }
 
 .notif-content {
@@ -203,37 +203,37 @@ body.dark-mode .tab-btn {
 }
 
 .mark-read-btn {
-    background: rgba(33, 150, 243, 0.25);
-    color: #64b5f6;
-    border: 1px solid rgba(33, 150, 243, 0.4);
+    background: rgba(96,165,250,0.12);
+    color: var(--info);
+    border: 1px solid rgba(96,165,250,0.2);
 }
 
 .mark-read-btn:hover {
-    background: rgba(33, 150, 243, 0.4);
+    background: rgba(96,165,250,0.2);
 }
 
 .delete-btn {
-    background: rgba(244, 67, 54, 0.25);
-    color: #e57373;
-    border: 1px solid rgba(244, 67, 54, 0.4);
+    background: rgba(244, 63, 94, 0.12);
+    color: var(--danger);
+    border: 1px solid rgba(244, 63, 94, 0.2);
 }
 
 .delete-btn:hover {
-    background: rgba(244, 67, 54, 0.4);
+    background: rgba(244, 63, 94, 0.2);
 }
 
 /* SECTION 7: Empty state */
 .empty-state {
     text-align: center;
     padding: 60px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 15px;
 }
 
 .empty-state .glyphicon-bell {
     font-size: 50px;
-    color: #64b5f6;
+    color: var(--info);
     display: block;
     margin-bottom: 15px;
 }
@@ -252,8 +252,8 @@ body.dark-mode .tab-btn {
 /* SECTION 8: Footer */
 footer {
     padding: 25px 5% 15px;
-    background: rgba(0, 0, 0, 0.15);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .footgrid {
